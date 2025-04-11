@@ -16,7 +16,7 @@ export default function EducationSection({ data }: EducationSectionProps) {
       <Card>
         <CardHeader>
           <CardTitle>Educational Pathways</CardTitle>
-          <CardDescription>Academic and certification routes into cloud computing</CardDescription>
+          <CardDescription>Academic and certification routes into ${data.industryName}</CardDescription>
         </CardHeader>
         <CardContent>
           <Tabs defaultValue="degrees" className="space-y-4">
@@ -37,7 +37,7 @@ export default function EducationSection({ data }: EducationSectionProps) {
             <TabsContent value="degrees">
               <div className="space-y-4">
                 <p className="text-muted-foreground">
-                  While specific cloud computing degrees are emerging, most professionals enter the field through these
+                  While specific {data.industryName} degrees are emerging, most professionals enter the field through these
                   traditional degrees:
                 </p>
                 <div className="grid gap-4 md:grid-cols-2">
@@ -64,24 +64,18 @@ export default function EducationSection({ data }: EducationSectionProps) {
             <TabsContent value="certifications">
               <div className="space-y-4">
                 <p className="text-muted-foreground">
-                  Cloud certifications are highly valued in the industry and often required for many positions:
+                {data.industryName} certifications are highly valued in the industry and often required for many positions:
                 </p>
                 <div className="grid gap-4 md:grid-cols-2">
                   {data.educationalPathways.certifications.map((cert, index) => (
                     <Card key={index} className="overflow-hidden">
                       <div className="bg-primary/10 p-4">
                         <h3 className="font-medium">
-                          {cert.includes("AWS")
-                            ? "AWS Certifications"
-                            : cert.includes("Azure")
-                              ? "Microsoft Azure Certifications"
-                              : cert.includes("Google")
-                                ? "Google Cloud Certifications"
-                                : "CompTIA Cloud+"}
+                          {cert}
                         </h3>
                       </div>
                       <CardContent className="p-4">
-                        <p className="text-sm text-muted-foreground">{cert}</p>
+                       
                         <div className="mt-2">
                           <Badge variant="outline">
                             {index === 0
@@ -102,7 +96,7 @@ export default function EducationSection({ data }: EducationSectionProps) {
             <TabsContent value="alternative">
               <div className="space-y-4">
                 <p className="text-muted-foreground">
-                  Alternative pathways to enter cloud computing without traditional degrees:
+                  Alternative pathways to enter {data.industryName} without traditional degrees:
                 </p>
                 <div className="grid gap-4 md:grid-cols-3">
                   {data.educationalPathways.alternativeRoutes.map((route, index) => (
@@ -136,7 +130,7 @@ export default function EducationSection({ data }: EducationSectionProps) {
       <Card>
         <CardHeader>
           <CardTitle>Internship Opportunities</CardTitle>
-          <CardDescription>Getting practical experience in cloud computing</CardDescription>
+          <CardDescription>Getting practical experience in {data.industryName}</CardDescription>
         </CardHeader>
         <CardContent>
           <div className="grid gap-6 md:grid-cols-3">
@@ -147,7 +141,7 @@ export default function EducationSection({ data }: EducationSectionProps) {
                 <p className="font-medium">{data.internshipOpportunities.availability}</p>
               </div>
               <p className="text-sm text-muted-foreground">
-                Cloud computing internships are widely available across India, especially in tech hubs.
+              {data.industryName} internships are widely available across India, especially in tech hubs.
               </p>
             </div>
             <div className="space-y-2">
@@ -167,14 +161,14 @@ export default function EducationSection({ data }: EducationSectionProps) {
           </div>
 
           <div className="mt-6 space-y-2">
-            <h3 className="font-medium">Tips for Securing Cloud Internships</h3>
-            <ul className="ml-6 list-disc space-y-2 text-sm text-muted-foreground">
-              <li>Start preparing 3-6 months before your target internship season</li>
-              <li>Build a portfolio of cloud projects using free tiers of AWS, Azure, or GCP</li>
-              <li>Obtain at least one foundational cloud certification</li>
-              <li>Participate in cloud hackathons and community events</li>
-              <li>Network with professionals on LinkedIn and at tech meetups</li>
-              <li>Apply to both service providers (AWS, Azure, GCP) and companies using cloud technologies</li>
+
+          <h3 className="font-medium">Tips for Securing Internships</h3>
+          <ul className="ml-6 list-disc space-y-2 text-sm text-muted-foreground">
+            {
+              data.tipsForSecuringInternships.map((item, index)=>(
+                <li key={index}>{item}</li>
+              ))
+            }
             </ul>
           </div>
         </CardContent>

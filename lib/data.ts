@@ -1,128 +1,265 @@
 import { type IndustryData, IndustryDataSchema } from "./types"
 
 // Raw data
-const rawIndustryData = {
-  industryName: "Cloud Computing (India)",
-  overview:
-    "Cloud Computing in India involves providing computing services—including servers, storage, databases, networking, software, analytics, and intelligence—over the Internet ('the cloud') to offer faster innovation, flexible resources, and economies of scale. It's a critical enabler for digital transformation across all sectors.",
-  salaryRange: [
+
+
+const rawIndustryData ={
+  "industryName": "Cyber Security (India)",
+  "overview": "The cyber security industry in India is experiencing rapid growth, driven by increasing digitization, rising cyber threats, and government initiatives to strengthen digital infrastructure. The industry is crucial for protecting businesses, governments, and individuals from cyber attacks.",
+  "salaryRange": [
     {
-      role: "Cloud Support Associate/Engineer",
-      min: 400000,
-      max: 1000000,
-      median: 600000,
-      location: "Bengaluru / Hyderabad / Pune / NCR",
+      "role": "Security Analyst",
+      "min": 500000,
+      "max": 1500000,
+      "median": 900000,
+      "location": "Major Cities"
     },
     {
-      role: "Cloud Engineer (DevOps Focus)",
-      min: 700000,
-      max: 2200000,
-      median: 1300000,
-      location: "Bengaluru / Hyderabad / Pune / NCR",
+      "role": "Penetration Tester",
+      "min": 600000,
+      "max": 2000000,
+      "median": 1200000,
+      "location": "Major Cities"
     },
-    { role: "Cloud Developer", min: 600000, max: 1800000, median: 1100000, location: "Major Cities" },
-    { role: "Cloud Security Engineer", min: 800000, max: 2500000, median: 1500000, location: "Major Cities" },
     {
-      role: "Cloud Solutions Architect",
-      min: 1200000,
-      max: 3500000,
-      median: 2000000,
-      location: "Bengaluru / Hyderabad / Pune / NCR",
+      "role": "Security Engineer",
+      "min": 700000,
+      "max": 2500000,
+      "median": 1500000,
+      "location": "Major Cities"
     },
-    { role: "Cloud Data Engineer", min: 700000, max: 2300000, median: 1400000, location: "Major Cities" },
+    {
+      "role": "Security Architect",
+      "min": 1500000,
+      "max": 4000000,
+      "median": 2500000,
+      "location": "Major Cities"
+    },
+    {
+      "role": "Chief Information Security Officer (CISO)",
+      "min": 3000000,
+      "max": 10000000,
+      "median": 6000000,
+      "location": "Major Cities"
+    }
   ],
-  growthRate: 25.0,
-  demandLevel: "HIGH",
-  topSkills: [
-    "AWS",
-    "Azure",
-    "GCP",
-    "Docker",
-    "Kubernetes",
-    "Infrastructure as Code (Terraform, CloudFormation)",
-    "CI/CD Pipelines",
-    "Networking Concepts",
-    "Security Best Practices",
-    "Python/Go/Bash Scripting",
-  ],
-  marketOutlook: "POSITIVE",
-  keyTrends: [
-    "Hybrid and Multi-Cloud Adoption",
-    "Serverless Computing Growth",
-    "AI/ML Integration with Cloud Platforms",
-    "Increased Focus on Cloud Security and Compliance (Cloud Security Posture Management - CSPM)",
-    "FinOps (Cloud Financial Management)",
-    "Rise of Edge Computing complementing Cloud",
-    "Platform Engineering on Cloud",
-  ],
-  recommendedSkills: [
-    "Advanced Certifications (e.g., AWS Solutions Architect Professional, Azure Expert Certs, GCP Professional Certs)",
-    "Kubernetes Administration (CKA/CKAD)",
-    "Advanced Terraform/IaC",
-    "Cloud Security Specializations",
-    "Serverless Development",
-    "Data Engineering on Cloud Platforms",
-    "Understanding Microservices Architecture",
-  ],
-  entryLevelOutlook: {
-    prospects: "Excellent",
-    commonRoles: [
-      "Cloud Support Engineer",
-      "Junior Cloud Engineer",
-      "Associate Cloud Consultant",
-      "NOC Engineer (Cloud Focus)",
-      "DevOps Trainee",
-    ],
-    advice:
-      "Obtain foundational cloud certifications (AWS CCP, AZ-900, GCP Cloud Digital Leader), build hands-on projects using free tiers, learn scripting (Python/Bash), understand core IT concepts (Networking, OS, Security), and contribute to open-source projects if possible.",
+  "salaryFactors": {
+    "description": "Several key factors influence salary ranges in this industry:",
+    "factors": [
+      {
+        "factorName": "Experience Level",
+        "factorDescription": "Entry-level positions have lower salaries, with significant increases for experienced professionals with specialized skills."
+      },
+      {
+        "factorName": "Location",
+        "factorDescription": "Salaries in major metropolitan areas like Bengaluru, Mumbai, and Delhi-NCR are typically higher due to the concentration of IT companies."
+      },
+      {
+        "factorName": "Certifications",
+        "factorDescription": "Industry-recognized certifications like CISSP, CISM, CEH, and OSCP can significantly increase earning potential."
+      },
+      {
+        "factorName": "Company Type",
+        "factorDescription": "MNCs and large enterprises tend to offer higher salaries compared to smaller companies or startups."
+      },
+      {
+        "factorName": "Skill Specialization",
+        "factorDescription": "Specialized skills like cloud security, application security, and threat intelligence command higher salaries due to their high demand."
+      }
+    ]
   },
-  educationalPathways: {
-    degrees: ["B.Tech/B.E. (CS, IT, ECE)", "MCA", "Relevant Diplomas"],
-    certifications: [
-      "AWS Certified Cloud Practitioner/Solutions Architect Associate/Developer Associate",
-      "Microsoft Certified: Azure Fundamentals/Administrator Associate/Developer Associate",
-      "Google Cloud Certified: Associate Cloud Engineer/Professional Cloud Architect",
-      "CompTIA Cloud+",
-    ],
-    alternativeRoutes: [
-      "Cloud-focused Bootcamps",
-      "Vendor Training Programs",
-      "Online Platforms (A Cloud Guru, Coursera, Udemy, Pluralsight)",
-    ],
+  "growthRate": 15.0,
+  "keyGrowthDrivers": {
+    "description": "The industry's expansion is fueled by several key drivers:",
+    "drivers": [
+      {
+        "driverName": "Digital India Initiatives",
+        "driverDescription": "Government focus on digitizing services and infrastructure creates vast opportunities for the tech sector, increasing the need for cybersecurity."
+      },
+      {
+        "driverName": "Remote Work Acceleration",
+        "driverDescription": "The shift towards remote and hybrid work models has boosted demand for cybersecurity solutions to protect distributed networks and devices."
+      },
+      {
+        "driverName": "Data Localization Policies",
+        "driverDescription": "Regulations requiring data storage within India drive investment in local data centers and cloud infrastructure, enhancing the importance of data security."
+      },
+      {
+        "driverName": "Startup Ecosystem Boom",
+        "driverDescription": "A vibrant startup culture fosters innovation, creates jobs, and increases demand for cybersecurity solutions to protect their intellectual property and customer data."
+      },
+      {
+        "driverName": "Increased Cloud Adoption",
+        "driverDescription": "Migration to cloud-based services and infrastructure requires robust security measures to protect data and applications."
+      },
+      {
+         "driverName": "Government Support & PLI Schemes",
+         "driverDescription": "Government initiatives and production-linked incentive (PLI) schemes are encouraging investments in cybersecurity and related technologies."
+      }
+    ]
   },
-  internshipOpportunities: {
-    availability: "HIGH",
-    commonAreas: [
-      "Cloud Infrastructure Support",
-      "Cloud Migration Assistance",
-      "DevOps Support",
-      "Cloud Monitoring",
-      "Scripting/Automation",
-    ],
-    timing:
-      "Summer (May-July) and Winter (Dec-Jan) breaks are common, but longer internships (6 months) are increasingly available.",
-  },
-  careerProgressionExamples: [
-    "Cloud Support Engineer -> Cloud Engineer -> Senior Cloud Engineer -> Cloud Architect / Cloud Lead",
-    "Junior DevOps Engineer -> DevOps Engineer -> Senior DevOps Engineer -> SRE / Platform Engineer",
-    "Cloud Security Analyst -> Cloud Security Engineer -> Senior Cloud Security Architect",
+  "demandLevel": "HIGH",
+  "topSkills": [
+    "Network Security",
+    "Cloud Security",
+    "Application Security",
+    "Penetration Testing",
+    "Incident Response",
+    "Threat Intelligence",
+    "Security Information and Event Management (SIEM)",
+    "Vulnerability Management",
+    "Data Loss Prevention (DLP)",
+    "Security Auditing"
   ],
-  keyCompaniesHiring: [
-    "Amazon Web Services (AWS)",
-    "Microsoft Azure",
-    "Google Cloud Platform (GCP)",
-    "TCS",
+  "marketOutlook": "POSITIVE",
+  "keyTrends": [
+    "Growing adoption of cloud security solutions.",
+    "Increasing focus on application security.",
+    "Rise of ransomware attacks and data breaches.",
+    "Implementation of stricter data privacy regulations.",
+    "Adoption of AI and machine learning in cybersecurity."
+  ],
+  "recommendedSkills": [
+    "Ethical Hacking",
+    "Cloud Security (AWS, Azure, GCP)",
+    "DevSecOps",
+    "Security Automation",
+    "Threat Hunting",
+    "Reverse Engineering",
+    "Cryptography",
+    "Linux Administration",
+    "Scripting (Python, Bash)",
+    "Networking Concepts"
+  ],
+  "entryLevelOutlook": {
+    "prospects": "Entry-level prospects are excellent, with a growing demand for skilled cybersecurity professionals. Internships and certifications can significantly enhance job opportunities.",
+    "commonRoles": [
+      "Security Analyst",
+      "Junior Security Engineer",
+      "Vulnerability Assessment Analyst",
+      "Security Operations Center (SOC) Analyst",
+      "Cybersecurity Intern"
+    ],
+    "advice": "Focus on developing a strong foundation in networking, operating systems, and security principles. Obtain relevant certifications and gain practical experience through internships or personal projects."
+  },
+  "educationalPathways": {
+    "degrees": [
+      "Computer Science",
+      "Information Security",
+      "Cyber Security",
+      "Information Technology",
+      "Electronics and Communication Engineering"
+    ],
+    "certifications": [
+      "Certified Ethical Hacker (CEH)",
+      "CompTIA Security+",
+      "Certified Information Systems Security Professional (CISSP)",
+      "Certified Information Security Manager (CISM)",
+      "Offensive Security Certified Professional (OSCP)"
+    ],
+    "alternativeRoutes": [
+      "Online Cybersecurity Courses (Coursera, Udemy, SANS Institute)",
+      "Cybersecurity Bootcamps",
+      "Self-Study and Capture the Flag (CTF) competitions"
+    ]
+  },
+  "internshipOpportunities": {
+    "availability": "MEDIUM",
+    "commonAreas": [
+      "Security Operations Center (SOC)",
+      "Vulnerability Management",
+      "Penetration Testing",
+      "Incident Response",
+      "Security Engineering"
+    ],
+    "timing": "Summer, Winter, and Year-round"
+  },
+  "tipsForSecuringInternships": [
+    "Build a strong portfolio showcasing relevant projects (e.g., on GitHub).",
+    "Tailor your resume and cover letter for each application.",
+    "Network actively online (LinkedIn) and attend virtual or in-person career fairs.",
+    "Practice coding challenges and technical fundamentals.",
+    "Gain relevant certifications or complete online courses.",
+    "Prepare for behavioral interview questions using the STAR method.",
+    "Participate in Capture the Flag (CTF) competitions.",
+    "Contribute to open-source security projects."
+  ],
+  "challenges": [
+    "Intense competition for talent, especially in specialized areas.",
+    "Rapid technological obsolescence requiring continuous upskilling.",
+    "Infrastructure gaps in smaller cities and rural areas.",
+    "Data privacy and cybersecurity concerns.",
+    "Global economic uncertainty impacting IT spending.",
+    "Skill gap between academic curricula and industry demands.",
+    "Evolving threat landscape requiring constant adaptation.",
+    "Complexity of security solutions."
+  ],
+  "marketGrowthProjections": {
+    "description": "Projected market size and job openings growth over the next few years.",
+    "data": [
+      {
+        "year": 2022,
+        "market": 3.5,
+        "jobs": 4.2
+      },
+      {
+        "year": 2023,
+        "market": 4.2,
+        "jobs": 5.0
+      },
+      {
+        "year": 2024,
+        "market": 5.0,
+        "jobs": 5.9
+      },
+      {
+        "year": 2025,
+        "market": 6.0,
+        "jobs": 7.0
+      },
+      {
+        "year": 2026,
+        "market": 7.2,
+        "jobs": 8.4
+      },
+      {
+        "year": 2027,
+        "market": 8.6,
+        "jobs": 10.1
+      }
+    ],
+    "chartConfig": {
+      "market": {
+        "label": "Market Size ($ Billion)",
+        "color": "hsl(var(--chart-1))"
+      },
+      "jobs": {
+        "label": "Job Openings (100K)",
+        "color": "hsl(var(--chart-2))"
+      }
+    }
+  },
+  "careerProgressionExamples": [
+    "Security Analyst -> Senior Security Analyst -> Security Team Lead -> Security Manager",
+    "Penetration Tester -> Senior Penetration Tester -> Security Consultant",
+    "Security Engineer -> Senior Security Engineer -> Security Architect"
+  ],
+  "keyCompaniesHiring": [
+    "Tata Consultancy Services",
     "Infosys",
     "Wipro",
-    "HCL Tech",
+    "HCL Technologies",
     "Accenture",
-    "Capgemini",
-    "IBM Cloud",
-    "Oracle Cloud",
-    "Major Banks",
-    "Large Enterprises",
-    "Tech Startups",
-  ],
+    "IBM",
+    "Cisco",
+    "Microsoft",
+    "Deloitte",
+    "Ernst & Young",
+    "KPMG",
+    "PwC",
+    "Quick Heal Technologies",
+    "TAC Security"
+  ]
 }
 
 // Validate data with Zod schema
