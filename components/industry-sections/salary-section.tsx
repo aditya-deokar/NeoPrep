@@ -188,31 +188,21 @@ export default function SalarySection({ data }: SalarySectionProps) {
       <Card>
         <CardHeader>
           <CardTitle>Salary Factors</CardTitle>
-          <CardDescription>What influences cloud computing salaries in India</CardDescription>
+          <CardDescription>{data.salaryFactors.description}</CardDescription>
         </CardHeader>
         <CardContent>
           <div className="grid gap-6 md:grid-cols-3">
-            <div className="space-y-2">
-              <h3 className="font-medium">Experience Level</h3>
-              <p className="text-sm text-muted-foreground">
-                Entry-level positions start around ₹4-6 LPA, while senior roles with 5+ years of experience can command
-                ₹15-35 LPA depending on specialization.
-              </p>
-            </div>
-            <div className="space-y-2">
-              <h3 className="font-medium">Certifications</h3>
-              <p className="text-sm text-muted-foreground">
-                Professional certifications from AWS, Azure, or GCP can increase salary by 15-30%. Advanced
-                certifications have even higher premiums.
-              </p>
-            </div>
-            <div className="space-y-2">
-              <h3 className="font-medium">Location</h3>
-              <p className="text-sm text-muted-foreground">
-                Salaries in Bengaluru, Hyderabad, and NCR tend to be 10-20% higher than other cities. Remote work is
-                increasingly common, potentially equalizing this gap.
-              </p>
-            </div>
+          {
+            data.salaryFactors.factors.map((item, index)=>(
+              <div key={index} className="space-y-2">
+                <h3 className="font-medium">{item.factorName}</h3>
+                <p className="text-sm text-muted-foreground">
+                  {item.factorDescription}
+                </p>
+              </div>
+            ))
+           
+          }
           </div>
         </CardContent>
       </Card>

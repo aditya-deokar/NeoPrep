@@ -487,7 +487,7 @@ body {
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
-  background-image: linear-gradient(to right,rgb(51, 47, 61) , rgb(134, 100, 212));
+  background-image: linear-gradient(to right,rgb(51, 47, 61) , hsl(258, 57%, 61%));
 }
 
 /* Step path animation */
