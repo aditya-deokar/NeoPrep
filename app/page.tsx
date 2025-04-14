@@ -2,6 +2,7 @@ import Benefits from "@/components/landing-page/benefits";
 import CallToAction from "@/components/landing-page/call-to-action";
 import CreativeSteps from "@/components/landing-page/creative-steps";
 import FAQ from "@/components/landing-page/faq";
+import Header from "@/components/landing-page/Header";
 import Hero from "@/components/landing-page/hero";
 import IndustryShowcase from "@/components/landing-page/industry-showcase";
 import Navbar from "@/components/landing-page/navbar";
@@ -26,7 +27,10 @@ export default function Home() {
       </div>
 
       <div className="relative z-10">
-        <Navbar />
+        {/* <Navbar /> */}
+
+        
+        <Header/>
         <Hero data={neoPrepLandingData.hero} />
         <CreativeSteps />
         <Benefits/>
