@@ -25,7 +25,7 @@ export function Header() {
   const unreadCount = notifications.filter((n) => !n.isRead).length
 
   return (
-    <header className="sticky top-0 z-10 flex h-14 items-center gap-4 border-b bg-background px-4 sm:px-6">
+    <header className="sticky top-0 z-10 flex h-14 items-center justify-between gap-4 border-b bg-background px-4 sm:px-6">
       <div className="hidden md:block md:w-32 lg:w-64">
         <span className="text-lg font-semibold">Dashboard</span>
       </div>
