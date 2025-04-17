@@ -143,54 +143,38 @@ export async function getCourseById2(id: string) {  //Parameter changed to id
 }
 
 
+export async function getCourseByUser(courseId: string) {
+  try {
+    const course = await prisma.courseList.findUnique({
+      where: {
+        courseId: courseId,
+        
+      },
+      
+    });
+    return course;
+  } catch (error) {
+    console.error("Error fetching course by ID:", error);
+    return null; // Or throw the error, depending on your error handling strategy
+  }
+}
 
-// export async function GenerateAndSaveAllChapters(courseId: string) {
-  
-//   const authResult = await auth();
-//   const userId = authResult.userId;
-//   if (!userId) {
-//     throw new Error("Unauthorized");
-//   }
 
-//   try {
-//     // Fetch the course using the provided courseId
-//     const course = await prisma.courseList.findUnique({
-//       where: {
-//         courseId: courseId,
-//       },
-//     });
 
-//     if (!course) {
-//       throw new Error("Course not found");
-//     }
+export async function getChapters(courseId: string) {
+  try {
+      const chapters = await prisma.chapters.findMany({
+          where: {
+              courseId: courseId,
+          },
+          orderBy: {
+            chapterId: 'asc'
+          }
+      });
+      return chapters;
+  } catch (error) {
+      console.error("Error fetching chapters:", error);
+      return []; // Or throw the error, depending on your error handling strategy
+  }
+}
 
-//     const courseName = course.name;  // Access the name properly
-
-//     // Simulate chapter generation
-//     const generatedChapters = Array.from({ length: 5 }, (_, i) => ({
-//       chapterId: i + 1, // Replace this with your actual chapter ID generation logic.
-//       courseId: course.courseId, // associate with existing courseId
-//       content: {
-//         title: `Chapter ${i + 1}: Introduction to ${courseName}`,
-//         description: `An overview of the topics covered in chapter ${i + 1}.`,
-//         details: `Detailed content for chapter ${i + 1} of the course.`,
-//       },
-//       videoId: `video-${i + 1}`,
-//     }));
-
-//     // Update the database with the generated chapters
-//     await prisma.chapters.createMany({
-//       data: generatedChapters.map((chapter) => ({
-//         chapterId: chapter.chapterId,
-//         courseId: chapter.courseId,  // Associate with existing courseId
-//         content: chapter.content,
-//         videoId: chapter.videoId,
-//       })),
-//     });
-
-//     revalidatePath(`/course/create-course/${course.id}/finish`); // adjust revalidate Path
-//   } catch (error: any) {
-//     console.error("Error generating and saving chapters:", error);
-//     throw new Error(error.message || "Failed to generate and save chapters");
-//   }
-// }

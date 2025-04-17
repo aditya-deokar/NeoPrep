@@ -1,5 +1,6 @@
 generator client {
   provider = "prisma-client-js"
+  output   = "../app/generated/prisma"
 }
 
 datasource db {
@@ -110,4 +111,5 @@ model Chapters {
   course     CourseList @relation(fields: [courseId], references: [courseId], name: "CourseToChapters")
   
   @@index([courseId])
+  @@unique([courseId, chapterId])
 }
