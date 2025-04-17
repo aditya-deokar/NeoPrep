@@ -315,3 +315,19 @@ export const GenerateAndSaveAllChapters = async (course: any) => {
     );
   }
 };
+
+
+export async function getChapter(courseId: string, chapterId: number) {
+  try {
+      const chapter = await prisma.chapters.findFirst({
+          where: {
+              courseId: courseId,
+              chapterId: chapterId,
+          },
+      });
+      return chapter;
+  } catch (error) {
+      console.error("Error fetching chapter:", error);
+      return null; // Or throw the error, depending on your error handling strategy
+  }
+}

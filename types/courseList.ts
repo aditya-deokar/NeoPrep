@@ -28,3 +28,8 @@ export type CourseListType = {
     About: string;
     duration: string;
   }
+
+
+
+
+  

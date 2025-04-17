@@ -3,7 +3,7 @@
 export interface Chapter {
     ChapterName: string;
     About: string;
-    Duration: string;
+    duration: string;
   }
   
   export interface CourseOutput {
