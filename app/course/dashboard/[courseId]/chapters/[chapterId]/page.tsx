@@ -18,34 +18,30 @@ import { ChaptersType } from "@/types/chapters";
 import { useUser } from "@clerk/nextjs";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useState, useEffect, use } from "react";
+import { useParams } from "next/navigation";
+import { useState, useEffect } from "react";
 import { toast } from "sonner";
 
-interface ChapterPageProps {
-  params: {
-    courseId: string;
-    chapterId: string;
-  };
-}
 
-export default function ChapterPage(promiseParams: { params: Promise<ChapterPageProps["params"]> }) {
-  const { courseId, chapterId } = use(promiseParams.params); // ✅ unwrap using use()
+export default function ChapterPage() {
 
-  const numericChapterId = parseInt(chapterId, 10);
-
+  const params = useParams();
+  const courseId = params?.courseId as string;
+  const chapterId = parseInt(params?.chapterId as string);
+  
   const { user } = useUser();
-  const router = useRouter();
+  
 
   const [chapter, setChapter] = useState<ChaptersType | null>(null);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchChapter = async () => {
-      if (courseId && !isNaN(numericChapterId)) {
+      if (courseId && !isNaN(chapterId)) {
         setLoading(true);
         try {
-          const result = await getChapter(courseId, numericChapterId);
+          const result = await getChapter(courseId, chapterId);
+          console.log(result);
           setChapter(result);
         } catch (error) {
           console.error("Error fetching chapter:", error);
@@ -57,7 +53,7 @@ export default function ChapterPage(promiseParams: { params: Promise<ChapterPage
     };
 
     fetchChapter();
-  }, [courseId, numericChapterId]);
+  }, [courseId, chapterId]);
 
   if (!chapter) {
     return <div>Loading chapter...</div>;
@@ -65,7 +61,9 @@ export default function ChapterPage(promiseParams: { params: Promise<ChapterPage
 
   return (
 
-    <DashboardShell>
+    <>
+    
+
       <div className="flex items-center justify-between">
         <Button variant="ghost" size="sm" asChild>
           <Link href="/" className="flex items-center gap-1">
@@ -90,11 +88,11 @@ export default function ChapterPage(promiseParams: { params: Promise<ChapterPage
         <div className="mt-6 grid gap-6 lg:grid-cols-3">
           <div className="lg:col-span-2 space-y-6">
             <TabsContent value="content" className="mt-0">
-              <ChapterContent chapter={chapter.content} /> {/* Pass chapter directly and change all child component props, remove id */}
+              <ChapterContent chapter={chapter?.content} /> {/* Pass chapter directly and change all child component props, remove id */}
             </TabsContent>
 
             <TabsContent value="video" className="mt-0">
-              <ChapterVideo chapter={chapter.content} /> {/* Pass chapter directly and change all child component props, remove id */}
+              <ChapterVideo chapter={chapter.videoId} /> {/* Pass chapter directly and change all child component props, remove id */}
             </TabsContent>
 
             <TabsContent value="exercises" className="mt-0">
@@ -110,7 +108,7 @@ export default function ChapterPage(promiseParams: { params: Promise<ChapterPage
             </TabsContent>
 
             <TabsContent value="resources" className="mt-0">
-              <ChapterResources chapter={chapter.content} /> {/* Pass chapter directly and change all child component props, remove id */}
+              <ChapterResources chapter={chapter.content.learningResources} /> {/* Pass chapter directly and change all child component props, remove id */}
             </TabsContent>
           </div>
 
@@ -119,6 +117,9 @@ export default function ChapterPage(promiseParams: { params: Promise<ChapterPage
           </div>
         </div>
       </Tabs>
-    </DashboardShell>
+    
+    
+    
+    </>
   );
 }

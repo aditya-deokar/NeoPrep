@@ -29,7 +29,7 @@ import { CourseListType } from "@/types/courseList";
 export function DashboardSidebar() {
   const pathname = usePathname();
   const { user } = useUser()
-  const router = useRouter()
+  
   const params = useParams()
   const [course, setCourse] = useState<CourseListType | null>(null)
   const [loading, setLoading] = useState(false)
@@ -76,7 +76,7 @@ export function DashboardSidebar() {
                     <SidebarGroupContent>
                         <SidebarMenu>
                             <SidebarMenuItem>
-                                <SidebarMenuButton asChild isActive={pathname === "/course"}>
+                                <SidebarMenuButton asChild isActive={pathname === "/course/dashboard"}>
                                     <Link href="/course">
                                         <Home className="h-4 w-4" />
                                         <span>Dashboard</span>
@@ -92,7 +92,7 @@ export function DashboardSidebar() {
                                 </SidebarMenuButton>
                             </SidebarMenuItem>
                             <SidebarMenuItem>
-                                <SidebarMenuButton asChild>
+                                <SidebarMenuButton asChild isActive={pathname === "/course/settings"}>
                                     <Link href="/course/settings">
                                         <Settings className="h-4 w-4" />
                                         <span>Settings</span>
@@ -111,9 +111,9 @@ export function DashboardSidebar() {
                                 <SidebarMenuItem key={index}>
                                     <SidebarMenuButton
                                         asChild
-                                        isActive={pathname === `/course/chapters/${index +1}`}
+                                        isActive={pathname === `/course/dashboard/${params?.courseId}/chapters/${index +1}`}
                                     >
-                                        <Link href={`/course/chapters/${index +1}`}>
+                                        <Link href={`/course/dashboard/${params?.courseId}/chapters/${index +1}`}>
                                             <BookOpen className="h-4 w-4" />
                                             <span>{chapter.ChapterName}</span>
                                         </Link>

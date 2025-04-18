@@ -256,17 +256,21 @@ export const SaveChapterInPrisma = async ({
   videoId?: string;
 }) => {
   try {
+    // Add JSON validation before saving
+    try {
+      JSON.stringify(content); // Test if content is valid
+    } catch (e) {
+      throw new Error("Invalid JSON content: " + e.message);
+    }
+
     const result = await prisma.chapters.create({
       data: {
         courseId,
         chapterId,
-        content : content,
+        content, // Prisma will automatically stringify this
         videoId,
-
       },
     });
-
-    
 
     return result;
   } catch (error: any) {
@@ -274,6 +278,10 @@ export const SaveChapterInPrisma = async ({
     throw new Error(error.message || "Failed to save chapter in Prisma.");
   }
 };
+
+
+
+
 
 export const GenerateAndSaveAllChapters = async (course: any) => {
   try {
@@ -283,21 +291,29 @@ export const GenerateAndSaveAllChapters = async (course: any) => {
     for (let i = 0; i < chapters.length; i++) {
       const chapter = chapters[i];
 
-      // 1. Generate content
-      const content = await GenerateChapterContentLayout(courseName, chapter);
+      // Add error handling around content generation
+      try {
+        let content = await GenerateChapterContentLayout(courseName, chapter);
+        
+        // Ensure content is properly formatted
+        if (typeof content === "string") {
+          content = JSON.parse(content); // Validate stringified JSON
+        }
+        
+        const videoId = "default-video-id";
 
-      // 2. Fetch video. skip for now since we are not storing videos
-      const videoId = "default-video-id";
+        await SaveChapterInPrisma({
+          chapterId: i + 1,
+          courseId: course?.courseId,
+          content,
+          videoId,
+        });
 
-      // 3. Save to prisma
-      await SaveChapterInPrisma({
-        chapterId: i + 1,
-        courseId: course?.courseId,
-        content,
-        videoId,
-      });
-
-      console.log("Creating chapter", i + 1, "for course ID:", course.id);
+        console.log("Creating chapter", i + 1, "for course ID:", course.id);
+      } catch (genError) {
+        console.error(`Error generating chapter ${i + 1}:`, genError);
+        throw new Error(`Chapter ${i + 1} generation failed`);
+      }
     }
 
     // 4. Mark course as published
@@ -319,15 +335,22 @@ export const GenerateAndSaveAllChapters = async (course: any) => {
 
 export async function getChapter(courseId: string, chapterId: number) {
   try {
-      const chapter = await prisma.chapters.findFirst({
-          where: {
-              courseId: courseId,
-              chapterId: chapterId,
-          },
-      });
-      return chapter;
+    const chapter = await prisma.chapters.findFirst({
+      where: {
+        courseId,
+        chapterId,
+      },
+    });
+
+    if (!chapter) return null;
+
+    // Remove JSON.parse completely - Prisma already parsed it
+    return {
+      ...chapter,
+      content: chapter.content, // Directly use parsed JSON
+    };
   } catch (error) {
-      console.error("Error fetching chapter:", error);
-      return null; // Or throw the error, depending on your error handling strategy
+    console.error("Error fetching chapter:", error);
+    return null;
   }
 }
