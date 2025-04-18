@@ -10,10 +10,10 @@ import { useStore } from "@/lib/store"
 import { useToast } from "../ui/use-toast"
 
 interface ChapterVideoProps {
-  chapterId: string
+  videoId: string
 }
 
-export function ChapterVideo({ chapterId }: ChapterVideoProps) {
+export function ChapterVideo({ videoId }: ChapterVideoProps) {
   const [isPlaying, setIsPlaying] = useState(false)
   const [isMuted, setIsMuted] = useState(false)
   const [progress, setProgress] = useState(0)
@@ -24,7 +24,7 @@ export function ChapterVideo({ chapterId }: ChapterVideoProps) {
   const isWatched = watchedVideos.includes(chapterId)
 
   // In a real app, we would fetch the video URL based on the chapterId
-  const videoUrl = "/placeholder.svg?height=400&width=800"
+  const videoUrl = videoId
 
   const togglePlay = () => {
     setIsPlaying(!isPlaying)

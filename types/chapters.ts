@@ -21,7 +21,7 @@ export type ContentType = {
 export type ContentSectionType = {
     sectionId: string;
     heading: string;
-    content: (string | { textContent: string; codeSnippet?: string; imageUrl?: string })[];
+    content: ( string | { textContent: string; codeSnippet?: string; imageUrl?: string })[];
     examples: ExampleType[];
     exercises: ExerciseType[];
     estimatedDuration: number;
@@ -59,3 +59,6 @@ export type LearningResourceType = {
     resourceLink: string;
     resourceDescription: string;
 };
+
+
+
