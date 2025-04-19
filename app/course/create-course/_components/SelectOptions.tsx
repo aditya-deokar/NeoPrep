@@ -38,6 +38,7 @@ const SelectOptions = () => {
               <SelectItem value="Beginner">Beginner</SelectItem>
               <SelectItem value="Intermediate">Intermediate</SelectItem>
               <SelectItem value="Advance">Advance</SelectItem>
+              <SelectItem value="BeginnerToAdvance">Beginner to Advance</SelectItem>
             </SelectContent>
           </Select>
         </div>
@@ -73,13 +74,13 @@ const SelectOptions = () => {
           </Select>
         </div>
 
-        <div>
+        {/* <div>
           <label className="text-sm font-medium" htmlFor="">No of chapters</label>
           <Input
             defaultValue={userCourseInput?.noOfChapter}
             onChange={(e) => handleInputChange("noOfChapter", Number(e.target.value))}
             className="h-14 text-lg" type="number"></Input>
-        </div>
+        </div> */}
 
       </div>
     </div>

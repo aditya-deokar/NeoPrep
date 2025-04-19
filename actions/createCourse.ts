@@ -61,7 +61,7 @@ export async function GenerateCourseLayout(userCourseInput: any): Promise<Course
         Topic: ${userCourseInput?.topic}
         Level: ${userCourseInput?.level}
         Duration: ${userCourseInput?.duration}
-        Number of Chapters: ${userCourseInput?.noOfChapter}
+        Number of Chapters: detect base on Topic and level
         `;
 
     const result = await model.generateContent(prompt);
