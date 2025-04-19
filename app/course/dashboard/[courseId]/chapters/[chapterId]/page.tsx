@@ -92,7 +92,7 @@ export default function ChapterPage() {
             </TabsContent>
 
             <TabsContent value="video" className="mt-0">
-              <ChapterVideo chapter={chapter.videoId} /> {/* Pass chapter directly and change all child component props, remove id */}
+              <ChapterVideo  videoId={chapter.videoId} chapterId={chapter?.chapterId.toString()} />
             </TabsContent>
 
             <TabsContent value="exercises" className="mt-0">

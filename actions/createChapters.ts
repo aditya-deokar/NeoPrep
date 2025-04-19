@@ -1,7 +1,6 @@
-// src/actions/chapter-actions.ts
-
 "use server";
 
+import { getVideo } from "@/configs/service";
 import prisma from "@/lib/prisma";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { revalidatePath } from "next/cache";
@@ -9,15 +8,17 @@ import { revalidatePath } from "next/cache";
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || "");
 const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
 
+
+
 export const GenerateChapterContentLayout = async (
   courseName: string,
   chapter: { ChapterName: string; About: string; }
 ) => {
   try {
     const CHAPTER_PROMPT = `Explain the concept in detail on Topic: ${courseName}, specific in Chapter: ${chapter.ChapterName}, cover all the chapter points like ${chapter.About} and add more. Format the response in a structured JSON format similar to the following example:
-    
     {
-
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://example.com/chapter.schema.json",
   "title": "Chapter Content Schema with Bloom's Taxonomy",
   "description": "Schema representing the structure of chapter content for technical courses, incorporating Bloom's Revised Taxonomy, learning resources, and duration estimates.",
   "type": "object",
@@ -225,8 +226,6 @@ export const GenerateChapterContentLayout = async (
   },
   "required": ["chapterId", "title", "contentSections"]
 }
-    
-    
     `;
 
     const result = await model.generateContent(CHAPTER_PROMPT);
@@ -244,6 +243,7 @@ export const GenerateChapterContentLayout = async (
   }
 };
 
+
 export const SaveChapterInPrisma = async ({
   courseId,
   chapterId,
@@ -256,10 +256,9 @@ export const SaveChapterInPrisma = async ({
   videoId?: string;
 }) => {
   try {
-    // Add JSON validation before saving
     try {
-      JSON.stringify(content); // Test if content is valid
-    } catch (e) {
+      JSON.stringify(content); 
+    } catch (e:any) {
       throw new Error("Invalid JSON content: " + e.message);
     }
 
@@ -280,9 +279,6 @@ export const SaveChapterInPrisma = async ({
 };
 
 
-
-
-
 export const GenerateAndSaveAllChapters = async (course: any) => {
   try {
     const courseName = course?.name;
@@ -290,7 +286,7 @@ export const GenerateAndSaveAllChapters = async (course: any) => {
 
     for (let i = 0; i < chapters.length; i++) {
       const chapter = chapters[i];
-
+      let videoId = ""
       // Add error handling around content generation
       try {
         let content = await GenerateChapterContentLayout(courseName, chapter);
@@ -300,7 +296,9 @@ export const GenerateAndSaveAllChapters = async (course: any) => {
           content = JSON.parse(content); // Validate stringified JSON
         }
         
-        const videoId = "default-video-id";
+        // const videoId = "default-video-id";
+        const videoResp = await getVideo(`${course.name}:${chapter.ChapterName}`)
+        videoId = videoResp[0]?.id?.videoId || ""
 
         await SaveChapterInPrisma({
           chapterId: i + 1,
@@ -344,10 +342,10 @@ export async function getChapter(courseId: string, chapterId: number) {
 
     if (!chapter) return null;
 
-    // Remove JSON.parse completely - Prisma already parsed it
+    
     return {
       ...chapter,
-      content: chapter.content, // Directly use parsed JSON
+      content: chapter.content, 
     };
   } catch (error) {
     console.error("Error fetching chapter:", error);

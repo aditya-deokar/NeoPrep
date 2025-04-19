@@ -24,8 +24,7 @@ const CreateCoursePage = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [loading, setLoading] = useState(false);
   const { userCourseInput } = useContext(UserInputContext);
-  const router = useRouter();
-  const { user } = useUser();
+  
 
   const checkStatus = () => {
     if (!userCourseInput) return true;
@@ -37,8 +36,8 @@ const CreateCoursePage = () => {
       activeIndex === 2 &&
       (!userCourseInput?.level ||
         !userCourseInput?.duration ||
-        userCourseInput?.video === undefined ||
-        !userCourseInput?.noOfChapter)
+        userCourseInput?.video === undefined 
+    )
     ) {
       return true;
     }
