@@ -266,7 +266,7 @@ export const SaveChapterInPrisma = async ({
       data: {
         courseId,
         chapterId,
-        content, // Prisma will automatically stringify this
+        content, 
         videoId,
       },
     });

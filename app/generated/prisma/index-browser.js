@@ -146,13 +146,7 @@ exports.Prisma.AssessmentScalarFieldEnum = {
 exports.Prisma.IndustryInsightsScalarFieldEnum = {
   id: 'id',
   industry: 'industry',
-  salaryRange: 'salaryRange',
-  growthRate: 'growthRate',
-  demandLevel: 'demandLevel',
-  topSkills: 'topSkills',
-  marketOutlook: 'marketOutlook',
-  keyTrends: 'keyTrends',
-  recommendedSkills: 'recommendedSkills',
+  industryData: 'industryData',
   lastUpdated: 'lastUpdated',
   nextUpdate: 'nextUpdate'
 };
@@ -204,17 +198,7 @@ exports.Prisma.JsonNullValueFilter = {
   JsonNull: Prisma.JsonNull,
   AnyNull: Prisma.AnyNull
 };
-exports.DemandLevel = exports.$Enums.DemandLevel = {
-  HIGH: 'HIGH',
-  MEDIUM: 'MEDIUM',
-  NEGATIVE: 'NEGATIVE'
-};
 
-exports.MarketOutlook = exports.$Enums.MarketOutlook = {
-  POSITIVE: 'POSITIVE',
-  NEUTRAL: 'NEUTRAL',
-  NEGATIVE: 'NEGATIVE'
-};
 
 exports.Prisma.ModelName = {
   User: 'User',

@@ -1,27 +1,14 @@
 'use client';
 
-import React, { useContext, useEffect } from 'react';
-import { UserCourseListContext } from '@/app/course/_context/UserCourseListContext';
+import React from 'react';
 import CourseCard from './CourseCard';
+import { CourseListType } from '@/types/courseList';
 
-interface Course {
-  courseId: string;
-  name: string;
-  level: string;
-  category: string;
-  courseOutput: any;
-  createdBy: string;
-  userName: string;
-  userProfileImage: string;
-  publish: boolean;
-}
 
-const UserCourseList: React.FC<{ initialCourses: Course[] }> = ({ initialCourses }) => {
-  const { setUserCourseList } = useContext(UserCourseListContext);
+const UserCourseList: React.FC<{ initialCourses: CourseListType[] }> = ({ initialCourses }) => {
+  
 
-  useEffect(() => {
-    setUserCourseList(initialCourses);
-  }, [initialCourses, setUserCourseList]);
+  // console.log(initialCourses);
 
   return (
     <div className='mt-10'>

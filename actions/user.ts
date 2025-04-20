@@ -2,8 +2,9 @@
 
 
 import { auth } from "@clerk/nextjs/server";
-import { generateAIInsights } from "./dashboard";
+
 import prisma from "@/lib/prisma";
+import { generateAIInsights } from "./industry";
 
 // Define a type for the data passed to updateUser
 interface UpdateUserData {
@@ -44,7 +45,7 @@ export async function updateUser(data: UpdateUserData) {
                     industryInsight = await prisma.industryInsights.create({
                         data: {
                             industry: data.industry,
-                            ...insights,
+                            industryData: insights,
                             nextUpdate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
                         },
                     });
