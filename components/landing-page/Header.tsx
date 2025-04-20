@@ -69,7 +69,7 @@ const Header = async () => {
           </SignedIn>
 
           <SignedOut>
-            <SignInButton mode="modal">
+            <SignInButton>
               <Button variant="outline">Sign in</Button>
             </SignInButton>
           </SignedOut>
