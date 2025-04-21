@@ -12,7 +12,7 @@ type OverviewSectionProps = {
 
 export default function OverviewSection({ data }: OverviewSectionProps) {
 
-  console.log(  "data-"+ data);
+  // console.log(  "data- "+ data);
   // Calculate average median salary
   const avgMedianSalary = data?.salaryRange?.reduce((sum, item) => sum + item.median, 0) / data?.salaryRange?.length
 

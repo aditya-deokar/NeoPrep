@@ -1,19 +1,3 @@
-// import Dashboard from '@/components/dashboard'
-// import { industryData } from '@/lib/data'
-// import React from 'react'
-
-// const page = () => {
-//   return (
-   
-
-//         <Dashboard data={industryData}/>
-    
-//   )
-// }
-
-// export default page
-
-
 
 import { getIndustryInsights } from '@/actions/industry';
 import { getUserOnboardingStatus } from '@/actions/user';
@@ -36,9 +20,7 @@ if(!isOnboarded){
 
 
   return (
-    <div className='container mx-auto'>
-        {/* <DashboardView insights={insights}/> */}
-
+    <div>
         <Dashboard data={insights}/>
     </div>
   )

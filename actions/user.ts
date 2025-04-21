@@ -20,7 +20,9 @@ interface UpdateUserData {
 
 export async function updateUser(data: UpdateUserData) {
     // ...auth checks...
-    const { userId } = await auth();
+    // const { userId } = await auth();
+    const authResult = await auth();
+    const userId = authResult.userId;
 
     if (!userId) throw new Error("Unauthorized");
 
@@ -71,8 +73,10 @@ export async function updateUser(data: UpdateUserData) {
   }
   
 
-export async function getUserOnboardingStatus() {  // Removed unused `data` argument
-    const { userId } = await auth();
+export async function getUserOnboardingStatus() {  
+    // const { userId } = await auth();
+    const authResult = await auth();
+    const userId = authResult.userId;
 
     if (!userId) throw new Error("Unauthorized");
 

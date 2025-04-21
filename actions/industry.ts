@@ -16,428 +16,281 @@ const model = genAI.getGenerativeModel({
 
 export const generateAIInsights = async (
   industry: string
-) => {
-  const prompt = `
-  Analyze the current state of the ${industry} industry and provide insights in ONLY the following JSON format without any additional notes or explanations:
-  {
-"$schema": "http://json-schema.org/draft-07/schema#",
-"title": "Technology Industry Analysis for India",
-"description": "Schema defining the structure for an analysis of the Technology Industry in India, tailored for students.",
-"type": "object",
-"properties": {
-"industryName": {
-"description": "The name of the industry and the specific region (India).",
-"type": "string",
-"examples": [
-"Technology (India)"
-]
-},
-"overview": {
-"description": "A brief overview of the technology industry in India.",
-"type": "string"
-},
-"salaryRange": {
-"description": "An array of common roles with their corresponding salary ranges in Indian Rupees (INR).",
-"type": "array",
-"items": {
-"type": "object",
-"properties": {
-"role": {
-"description": "The job title or role.",
-"type": "string"
-},
-"min": {
-"description": "Minimum annual salary in INR (Lakhs or full amount).",
-"type": "integer",
-"minimum": 0
-},
-"max": {
-"description": "Maximum annual salary in INR (Lakhs or full amount).",
-"type": "integer",
-"minimum": 0
-},
-"median": {
-"description": "Median annual salary in INR (Lakhs or full amount).",
-"type": "integer",
-"minimum": 0
-},
-"location": {
-"description": "Typical location(s) or note on location variance (e.g., Major Cities, specific tech hubs like Bengaluru, Hyderabad, Pune, NCR).",
-"type": "string"
-}
-},
-"required": [
-"role",
-"min",
-"max",
-"median",
-"location"
-]
-}
-},
-"salaryFactors": {
-"description": "Details on factors influencing salary levels within the industry.",
-"type": "object",
-"properties": {
-"description": {
-"description": "A general statement about what influences salaries.",
-"type": "string",
-"examples": [
-"Several key factors influence salary ranges in this industry:"
-]
-},
-"factors": {
-"description": "An array containing specific factors and their descriptions.",
-"type": "array",
-"minItems": 1,
-"items": {
-"type": "object",
-"properties": {
-"factorName": {
-"description": "The name of the influencing factor.",
-"type": "string",
-"enum": [
-"Experience Level",
-"Location",
-"Certifications",
-"Company Type",
-"Skill Specialization"
-]
-},
-"factorDescription": {
-"description": "A paragraph describing the impact of the factor.",
-"type": "string"
-}
-},
-"required": [
-"factorName",
-"factorDescription"
-]
-}
-}
-},
-"required": [
-"description",
-"factors"
-]
-},
-"growthRate": {
-"description": "Projected annual growth rate of the industry in India (as a percentage).",
-"type": "number",
-"format": "float",
-"minimum": 0
-},
-"keyGrowthDrivers": {
-"description": "Major factors contributing to the industry's growth in India.",
-"type": "object",
-"properties": {
-"description": {
-"description": "Introductory text for the growth drivers section.",
-"type": "string",
-"examples": [
-"The industry's expansion is fueled by several key drivers:"
-]
-},
-"drivers": {
-"description": "An array of specific growth drivers and their descriptions.",
-"type": "array",
-"minItems": 1,
-"items": {
-"type": "object",
-"properties": {
-"driverName": {
-"description": "Name of the growth driver.",
-"type": "string",
-"enum": [
-"Digital India Initiatives",
-"Remote Work Acceleration",
-"Data Localization Policies",
-"Startup Ecosystem Boom",
-"Increased Cloud Adoption",
-"Government Support & PLI Schemes"
-]
-},
-"driverDescription": {
-"description": "Description of how the driver contributes to growth.",
-"type": "string"
-}
-},
-"required": [
-"driverName",
-"driverDescription"
-],
-"examples": [
-{
-"driverName": "Digital India Initiatives",
-"driverDescription": "Government focus on digitizing services and infrastructure creates vast opportunities for the tech sector."
-},
-{
-"driverName": "Remote Work Acceleration",
-"driverDescription": "The shift towards remote and hybrid work models has boosted demand for collaboration tools, cloud services, and cybersecurity."
-},
-{
-"driverName": "Data Localization Policies",
-"driverDescription": "Regulations requiring data storage within India drive investment in local data centers and cloud infrastructure."
-},
-{
-"driverName": "Startup Ecosystem Boom",
-"driverDescription": "A vibrant startup culture fosters innovation, creates jobs, and increases demand for tech talent and services."
-}
-]
-}
-}
-},
-"required": [
-"description",
-"drivers"
-]
-},
-"demandLevel": {
-"description": "The current demand level for professionals in this industry.",
-"type": "string",
-"enum": [
-"HIGH",
-"MEDIUM",
-"LOW"
-]
-},
-"topSkills": {
-"description": "A list of the most currently in-demand technical and soft skills.",
-"type": "array",
-"items": {
-"type": "string"
-},
-"minItems": 1
-},
-"marketOutlook": {
-"description": "The overall future outlook for the industry in India.",
-"type": "string",
-"enum": [
-"POSITIVE",
-"NEUTRAL",
-"NEGATIVE"
-]
-},
-"keyTrends": {
-"description": "Significant trends shaping the industry in India.",
-"type": "array",
-"items": {
-"type": "string"
-},
-"minItems": 1
-},
-"recommendedSkills": {
-"description": "Skills recommended for students to learn to succeed in the future.",
-"type": "array",
-"items": {
-"type": "string"
-},
-"minItems": 1
-},
-"entryLevelOutlook": {
-"description": "Information specifically for entry-level job seekers.",
-"type": "object",
-"properties": {
-"prospects": {
-"description": "Outlook for entry-level job prospects.",
-"type": "string"
-},
-"commonRoles": {
-"description": "Common job titles for entry-level positions.",
-"type": "array",
-"items": {
-"type": "string"
-}
-},
-"advice": {
-"description": "Tips and advice for students entering the industry.",
-"type": "string"
-}
-},
-"required": [
-"prospects",
-"commonRoles",
-"advice"
-]
-},
-"educationalPathways": {
-"description": "Common educational routes into the industry.",
-"type": "object",
-"properties": {
-"degrees": {
-"description": "Relevant university degrees.",
-"type": "array",
-"items": {
-"type": "string"
-}
-},
-"certifications": {
-"description": "Valuable industry certifications.",
-"type": "array",
-"items": {
-"type": "string"
-}
-},
-"alternativeRoutes": {
-"description": "Alternative paths like bootcamps or self-study.",
-"type": "array",
-"items": {
-"type": "string"
-}
-}
-},
-"required": [
-"degrees",
-"certifications",
-"alternativeRoutes"
-]
-},
-"internshipOpportunities": {
-"description": "Information about internship availability and types.",
-"type": "object",
-"properties": {
-"availability": {
-"description": "General availability of internships.",
-"type": "string",
-"enum": [
-"HIGH",
-"MEDIUM",
-"LOW"
-]
-},
-"commonAreas": {
-"description": "Common fields or departments offering internships.",
-"type": "array",
-"items": {
-"type": "string"
-}
-},
-"timing": {
-"description": "Typical timing for internships (e.g., summer, winter, duration).",
-"type": "string"
-}
-},
-"required": [
-"availability",
-"commonAreas",
-"timing"
-]
-},
-"tipsForSecuringInternships": {
-"description": "Actionable tips for students seeking internships in this industry.",
-"type": "array",
-"minItems": 1,
-"items": {
-"type": "string"
-},
-"examples": [
-"Build a strong portfolio showcasing relevant projects (e.g., on GitHub).",
-"Tailor your resume and cover letter for each application.",
-"Network actively online (LinkedIn) and attend virtual or in-person career fairs.",
-"Practice coding challenges and technical fundamentals.",
-"Gain relevant certifications or complete online courses.",
-"Prepare for behavioral interview questions using the STAR method."
-]
-},
-"challenges": {
-"description": "Key challenges faced by the industry and professionals within it.",
-"type": "array",
-"minItems": 1,
-"items": {
-"type": "string"
-},
-"examples": [
-"Intense competition for talent, especially in specialized areas.",
-"Rapid technological obsolescence requiring continuous upskilling.",
-"Infrastructure gaps in smaller cities and rural areas.",
-"Data privacy and cybersecurity concerns.",
-"Global economic uncertainty impacting IT spending.",
-"Skill gap between academic curricula and industry demands."
-]
-},
-"marketGrowthProjections": {
-"description": "Data and configuration for visualizing market and job growth projections.",
-"type": "object",
-"properties": {
-"description": {
-"type": "string",
-"description": "A brief description of the data being visualized.",
-"examples": [ "Projected market size and job openings growth over the next few years." ]
-},
-"data": {
-"type": "array",
-"description": "Time-series data points for visualization.",
-"minItems": 1,
-"items": {
-"type": "object",
-"properties": {
-"year": {
-"type": "integer",
-"description": "The year for the data point."
-},
-"market": {
-"type": "number",
-"description": "Market size metric (e.g., in
-Billion)", "color": "hsl(var(--chart-1))" },
-"jobs": { "label": "Job Openings (100K)", "color": "hsl(var(--chart-2))" }
-}
-]
-}
-},
-"required": ["description", "data", "chartConfig"]
-},
-"careerProgressionExamples": {
-"description": "Example career paths within the industry.",
-"type": "array",
-"items": {
-"type": "string",
-"examples": [
-"Associate Software Engineer -> Software Engineer -> Senior Software Engineer -> Lead Engineer / Architect / Engineering Manager"
-]
-}
-},
-"keyCompaniesHiring": {
-"description": "A list of major companies known for hiring in this industry in India.",
-"type": "array",
-"items": {
-"type": "string"
-}
-}
-},
-"required": [
-"industryName",
-"overview",
-"salaryRange",
-"salaryFactors",
-"growthRate",
-"keyGrowthDrivers", // Added
-"demandLevel",
-"topSkills",
-"marketOutlook",
-"keyTrends",
-"recommendedSkills",
-"entryLevelOutlook",
-"educationalPathways",
-"internshipOpportunities",
-"tipsForSecuringInternships",
-"challenges", // Added
-"marketGrowthProjections", // Added
-"careerProgressionExamples",
-"keyCompaniesHiring"
-]
-}
+) : Promise<any>=> {
 
-  IMPORTANT: Return ONLY the JSON. No additional text, notes, or markdown formatting.
- 
+
+  const prompt = `
+  Analyze the current state of the ${industry} industry and provide insights in ONLY the following JSON format without any additional notes or explanations
+  note-Analyze Indian Market State and (Major Cities in India)
+  Format the response in a structured JSON format similar to the following example:
+  {
+  "overview": "The Data Science industry in India is booming, driven by the increasing availability of data and the need for organizations to extract actionable insights. It encompasses data analysis, machine learning, and artificial intelligence, playing a crucial role in decision-making across various sectors.",
+  "keyTrends": [
+    "Growing adoption of AI and machine learning across industries.",
+    "Increasing use of cloud-based data science platforms.",
+    "Rising demand for data scientists with specialized skills.",
+    "Focus on ethical and responsible AI.",
+    "Integration of data science with business intelligence."
+  ],
+  "topSkills": [
+    "Python",
+    "R",
+    "Machine Learning",
+    "Deep Learning",
+    "Data Visualization",
+    "SQL",
+    "Big Data Technologies (Hadoop, Spark)",
+    "Data Mining",
+    "Statistical Analysis",
+    "Natural Language Processing (NLP)"
+  ],
+  "challenges": [
+    "Intense competition for talent, especially in specialized areas.",
+    "Rapid technological obsolescence requiring continuous upskilling.",
+    "Infrastructure gaps in smaller cities and rural areas.",
+    "Data privacy and cybersecurity concerns.",
+    "Global economic uncertainty impacting IT spending.",
+    "Skill gap between academic curricula and industry demands.",
+    "Ensuring data quality and reliability.",
+    "Communicating complex insights to non-technical stakeholders."
+  ],
+  "growthRate": 25,
+  "demandLevel": "HIGH",
+  "salaryRange": [
+    {
+      "max": 1200000,
+      "min": 400000,
+      "role": "Data Analyst",
+      "median": 700000,
+      "location": "Major Cities"
+    },
+    {
+      "max": 2500000,
+      "min": 700000,
+      "role": "Data Scientist",
+      "median": 1500000,
+      "location": "Major Cities"
+    },
+    {
+      "max": 3000000,
+      "min": 800000,
+      "role": "Machine Learning Engineer",
+      "median": 1800000,
+      "location": "Major Cities"
+    },
+    {
+      "max": 1500000,
+      "min": 500000,
+      "role": "Business Intelligence Analyst",
+      "median": 900000,
+      "location": "Major Cities"
+    },
+    {
+      "max": 2000000,
+      "min": 600000,
+      "role": "Data Engineer",
+      "median": 1200000,
+      "location": "Major Cities"
+    }
+  ],
+  "industryName": "Data Science (India)",
+  "marketOutlook": "POSITIVE",
+  "salaryFactors": {
+    "factors": [
+      {
+        "factorName": "Experience Level",
+        "factorDescription": "Salaries increase significantly with experience, particularly for senior data scientists and machine learning engineers."
+      },
+      {
+        "factorName": "Location",
+        "factorDescription": "Metropolitan areas like Bengaluru, Mumbai, and Delhi-NCR offer higher salaries due to greater demand and cost of living."
+      },
+      {
+        "factorName": "Certifications",
+        "factorDescription": "Relevant certifications in data science, machine learning, or cloud platforms can boost earning potential."
+      },
+      {
+        "factorName": "Company Type",
+        "factorDescription": "MNCs and large enterprises generally offer higher salaries compared to startups or smaller companies."
+      },
+      {
+        "factorName": "Skill Specialization",
+        "factorDescription": "Expertise in specific areas like deep learning, natural language processing (NLP), or computer vision commands higher salaries."
+      }
+    ],
+    "description": "Several key factors influence salary ranges in this industry:"
+  },
+  "keyGrowthDrivers": {
+    "drivers": [
+      {
+        "driverName": "Digital India Initiatives",
+        "driverDescription": "Government initiatives to promote digitization and data-driven governance are driving demand for data science professionals."
+      },
+      {
+        "driverName": "Remote Work Acceleration",
+        "driverDescription": "The shift towards remote work has increased the need for data-driven insights to optimize business operations and employee productivity."
+      },
+      {
+        "driverName": "Data Localization Policies",
+        "driverDescription": "Data localization mandates are encouraging companies to invest in data analytics capabilities within India."
+      },
+      {
+        "driverName": "Startup Ecosystem Boom",
+        "driverDescription": "A thriving startup ecosystem is generating vast amounts of data, creating demand for data scientists to analyze and leverage this data."
+      },
+      {
+        "driverName": "Increased Cloud Adoption",
+        "driverDescription": "The adoption of cloud computing is making it easier and more affordable for organizations to store and process large volumes of data."
+      },
+      {
+        "driverName": "Government Support & PLI Schemes",
+        "driverDescription": "Government support and production-linked incentive (PLI) schemes are promoting investment in data science and related technologies."
+      }
+    ],
+    "description": "The industry's expansion is fueled by several key drivers:"
+  },
+  "entryLevelOutlook": {
+    "advice": "Focus on building a strong portfolio of data science projects, contributing to open-source projects, and networking with industry professionals.",
+    "prospects": "Entry-level prospects are promising, but require a strong foundation in mathematics, statistics, and programming. Internships and projects are essential.",
+    "commonRoles": [
+      "Data Analyst",
+      "Junior Data Scientist",
+      "Business Intelligence Analyst",
+      "Data Science Intern"
+    ]
+  },
+  "recommendedSkills": [
+    "Deep Learning",
+    "Natural Language Processing (NLP)",
+    "Computer Vision",
+    "Reinforcement Learning",
+    "Cloud Computing (AWS, Azure, GCP)",
+    "Big Data Technologies (Spark, Hadoop)",
+    "Data Engineering",
+    "Statistical Modeling",
+    "Business Intelligence",
+    "Communication and Storytelling"
+  ],
+  "keyCompaniesHiring": [
+    "Tata Consultancy Services",
+    "Infosys",
+    "Wipro",
+    "HCL Technologies",
+    "Accenture",
+    "IBM",
+    "Capgemini",
+    "Cognizant",
+    "Mu Sigma",
+    "Fractal Analytics",
+    "Quantiphi",
+    "Amazon",
+    "Google",
+    "Microsoft"
+  ],
+  "educationalPathways": {
+    "degrees": [
+      "Computer Science",
+      "Statistics",
+      "Mathematics",
+      "Economics",
+      "Engineering"
+    ],
+    "certifications": [
+      "Google Data Analytics Professional Certificate",
+      "Microsoft Certified: Azure Data Scientist Associate",
+      "IBM Data Science Professional Certificate",
+      "DataCamp Certifications",
+      "SAS Certified Data Scientist"
+    ],
+    "alternativeRoutes": [
+      "Online Data Science Courses (Coursera, Udemy, edX)",
+      "Data Science Bootcamps",
+      "Self-Study and Kaggle Competitions"
+    ]
+  },
+  "internshipOpportunities": {
+    "timing": "Summer, Winter, and Year-round",
+    "commonAreas": [
+      "Data Analysis",
+      "Machine Learning",
+      "Business Intelligence",
+      "Data Engineering",
+      "Research"
+    ],
+    "availability": "MEDIUM"
+  },
+  "marketGrowthProjections": {
+    "data": [
+      {
+        "jobs": 3.5,
+        "year": 2022,
+        "market": 2.8
+      },
+      {
+        "jobs": 4.4,
+        "year": 2023,
+        "market": 3.5
+      },
+      {
+        "jobs": 5.5,
+        "year": 2024,
+        "market": 4.4
+      },
+      {
+        "jobs": 6.9,
+        "year": 2025,
+        "market": 5.5
+      },
+      {
+        "jobs": 8.6,
+        "year": 2026,
+        "market": 6.9
+      },
+      {
+        "jobs": 10.8,
+        "year": 2027,
+        "market": 8.6
+      }
+    ],
+    "chartConfig": {
+      "jobs": {
+        "color": "hsl(var(--chart-2))",
+        "label": "Job Openings (100K)"
+      },
+      "market": {
+        "color": "hsl(var(--chart-1))",
+        "label": "Market Size ($ Billion)"
+      }
+    },
+    "description": "Projected market size and job openings growth over the next few years."
+  },
+  "careerProgressionExamples": [
+    "Data Analyst -> Senior Data Analyst -> Data Science Manager",
+    "Data Scientist -> Senior Data Scientist -> Lead Data Scientist",
+    "Machine Learning Engineer -> Senior Machine Learning Engineer -> AI Architect"
+  ],
+  "tipsForSecuringInternships": [
+    "Build a strong portfolio showcasing relevant projects (e.g., on GitHub).",
+    "Tailor your resume and cover letter for each application.",
+    "Network actively online (LinkedIn) and attend virtual or in-person career fairs.",
+    "Practice coding challenges and technical fundamentals.",
+    "Gain relevant certifications or complete online courses.",
+    "Prepare for behavioral interview questions using the STAR method.",
+    "Participate in Kaggle competitions.",
+    "Contribute to open-source data science projects."
+  ]
+}
 `;
 
   const result = await model.generateContent(prompt);
   
   const response = result.response;
   const text = response.text();
-  const cleanedText = text.replace(/```(?:json)?\n?/g, "").trim();
+  let cleanedText = text.replace(/```(?:json)?\n?/g, "").trim();
 
-
+  if (typeof cleanedText === "string") {
+    cleanedText = JSON.parse(cleanedText); // Validate stringified JSON
+  }
   return cleanedText;
 };
 
@@ -465,18 +318,22 @@ export async function getIndustryInsights(){
 
 
 
-        const insights= await generateAIInsights(user.industry!);
+        let industryData= await generateAIInsights(user.industry!);
 
-        try {
-          JSON.stringify(insights); 
-        } catch (e:any) {
-          throw new Error("Invalid JSON content: " + e.message);
+        if (typeof industryData === "string") {
+          industryData = JSON.parse(industryData); // Validate stringified JSON
         }
+
+      try{ 
+          JSON.stringify(industryData); 
+      } catch (e:any) {
+        throw new Error("Invalid JSON content: " + e.message);
+      }
 
         const industryInsight = await prisma.industryInsights.create({
             data:{
                 industry:user.industry!,
-                industryData: insights,
+                industryData,
                 nextUpdate: new Date(Date.now() + 7 * 24* 60* 60* 1000),
             }
         })
