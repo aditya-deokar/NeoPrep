@@ -481,9 +481,9 @@ export async function getIndustryInsights(){
             }
         })
 
-        return industryInsight;
+        return industryInsight?.industryData;
     }
 
-    return user.industryInsights;
+    return user?.industryInsights?.industryData;
 
 }

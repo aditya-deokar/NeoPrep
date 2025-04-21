@@ -31,6 +31,8 @@ type DashboardProps = {
 }
 
 export default function Dashboard({ data }: DashboardProps) {
+
+  // console.log("data1"+ data)
   const [activeSection, setActiveSection] = useState<string>("overview")
 
   const renderSection = () => {
