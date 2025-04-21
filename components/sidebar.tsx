@@ -39,7 +39,7 @@ export function Sidebar({ className }: SidebarProps) {
     { icon: Home, label: "Dashboard", href: "/dashboard" },
     { icon: BookOpen, label: "Courses" ,href: "/dashboard/courses" },
     { icon: Video, label: "Interviews", href: "/dashboard/interviews" },
-    { icon: Compass, label: "Insights",  href: "/industry" },
+    { icon: Compass, label: "Insights",  href: "/dashboard/onboarding" },
     { icon: BarChart3, label: "Skills", href: "/dashboard/skills" },
     { icon: Calendar, label: "Activity", href: "/dashboard/calendar" },
   ]
