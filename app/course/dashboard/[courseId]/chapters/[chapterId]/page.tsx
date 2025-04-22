@@ -113,7 +113,7 @@ export default function ChapterPage() {
           </div>
 
           <div>
-            <ChapterNavigation />
+            <ChapterNavigation chapter={chapter.content} />
           </div>
         </div>
       </Tabs>
