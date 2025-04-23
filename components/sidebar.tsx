@@ -37,9 +37,9 @@ export function Sidebar({ className }: SidebarProps) {
 
   const navItems = [
     { icon: Home, label: "Dashboard", href: "/dashboard" },
+    { icon: Compass, label: "Industry Insights",  href: "/dashboard/onboarding" },
     { icon: BookOpen, label: "Courses" ,href: "/dashboard/courses" },
     { icon: Video, label: "Interviews", href: "/dashboard/interviews" },
-    { icon: Compass, label: "Insights",  href: "/dashboard/onboarding" },
     { icon: BarChart3, label: "Skills", href: "/dashboard/skills" },
     { icon: Calendar, label: "Activity", href: "/dashboard/calendar" },
   ]
