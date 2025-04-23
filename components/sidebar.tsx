@@ -145,7 +145,7 @@ export function Sidebar({ className }: SidebarProps) {
         </div>
       </div>
 
-      <div className="mt-auto p-2 border-t">
+      {/* <div className="mt-auto p-2 border-t">
         <div className={cn("flex items-center gap-2 p-2", sidebarCollapsed ? "justify-center" : "px-2")}>
           <Avatar className="h-8 w-8">
             <AvatarImage src="/images/avatars/alex.png" alt="Alex Johnson" />
@@ -158,7 +158,7 @@ export function Sidebar({ className }: SidebarProps) {
             </div>
           )}
         </div>
-      </div>
+      </div> */}
     </motion.div>
   )
 }

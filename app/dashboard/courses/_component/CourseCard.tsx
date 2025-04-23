@@ -53,11 +53,11 @@ const CourseCard: React.FC<CourseCardProps> = ({ course, refreshData, displayUse
           <p className="text-primary/50 text-sm my-1">{course?.category}</p>
 
           <div className="flex items-center justify-between">
-            <h2 className="flex gap-2 items-center p-1 bg-purple-200 rounded text-primary text-sm">
+            <h2 className="flex gap-2 items-center p-1 bg-secondary rounded text-primary text-sm">
               <BookOpen />
               {course?.courseOutput?.noOfChapters || 0} Chapters
             </h2>
-            <h2 className="p-1 bg-purple-200 rounded text-primary text-sm">
+            <h2 className="p-1 bg-secondary rounded text-primary text-sm">
               { course?.level || "N/A"}
             </h2>
           </div>
