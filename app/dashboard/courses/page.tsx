@@ -5,7 +5,7 @@ import UserCourseList from './_component/UserCourseList';
 
 const UserCourseListWrapper = async () => {
   const courses = await getUserCourses();
-  console.log(courses)
+  // console.log(courses)
   
   return <UserCourseList initialCourses={courses} />;
 };

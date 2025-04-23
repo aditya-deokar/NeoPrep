@@ -30,7 +30,7 @@ const chapterSchema = z.object({
                   }).optional(),
               ]).optional()
           )
-      ]).describe("provide all the information for this topic"),
+      ]).describe("The main content of the section, which can include text, code snippets, and images"),
       examples: z.array(
         z.object({
           exampleId: z.string(),
@@ -59,7 +59,7 @@ const chapterSchema = z.object({
     z.object({
       questionId: z.string(),
       questionText: z.string(),
-      options: z.array(z.string()).min(4),
+      options: z.array(z.string()),
       correctAnswerIndex: z.number().int(),
       bloomLevel: bloomLevelEnum.describe("Bloom's Taxonomy level for this assessment question"),
     }).required({ questionId: true, questionText: true, options: true, correctAnswerIndex: true, bloomLevel: true })
