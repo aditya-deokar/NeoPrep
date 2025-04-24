@@ -7,11 +7,14 @@ import { Check, CheckCircle } from "lucide-react"
 import { motion } from "framer-motion"
 import { useToast } from "../ui/use-toast"
 import { useStore } from "@/lib/store"
-import { ContentType } from "@/types/chapters"
+
+import { Chapter } from "@/types/zodChapterSchema"
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter"
+import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism"
 
 
 interface ChapterContentProps {
-  chapter: ContentType
+  chapter: Chapter
 }
 
 export function ChapterContent({ chapter }: ChapterContentProps) {
@@ -64,31 +67,80 @@ export function ChapterContent({ chapter }: ChapterContentProps) {
                 />
               </div>
 
-              {section?.content?.map((paragraph, pIndex) => (
-                <>
-                <p key={pIndex} className="text-sm">
-                  {paragraph?.textContent}
-                </p>
 
-                </>
-              ))}
+              {Array.isArray(section.content)
+                ? section.content.map((item, contentIndex) => {
+                  if (typeof item === "string") {
+                    return (
+                      <p key={contentIndex} className="text-sm">
+                        {item}
+                      </p>
+                    )
+                  } else if (item && typeof item === "object") {
+                    return (
+                      <div key={contentIndex} className="space-y-2">
+                        {item.textContent && (
+                          <p className="text-sm">{item.textContent}</p>
+                        )}
+                        {item.codeSnippet && (
+                          <SyntaxHighlighter
+                            language={item.language || "javascript"}
+                            style={oneDark}
+                            customStyle={{
+                              borderRadius: "0.5rem",
+                              fontSize: "0.75rem",
+                              padding: "1rem",
+                            }}
+                          >
+                            {item.codeSnippet}
+                          </SyntaxHighlighter>
+                        )}
+                        {/*
+                         {item.imageUrl && (
+                          <img
+                            src={item.imageUrl}
+                            alt="Illustration"
+                            className="rounded-md max-w-full h-auto"
+                          />
+                        )} 
+                         */}
+                      </div>
+                    )
+                  }
+                  return null
+                })
+                : typeof section.content === "string" ? (
+                  <p className="text-sm">{section.content}</p>
+                ) : null}
+
 
               {section.examples && section.examples.length > 0 && (
                 <div className="space-y-2">
                   <h4 className="text-sm font-medium">Examples</h4>
+
                   {section?.examples?.map((example, eIndex) => (
-                    <motion.div
+                    <div
                       key={eIndex}
-                      className="rounded-md bg-muted p-4"
-                      whileHover={{ scale: 1.01 }}
-                      transition={{ type: "spring", stiffness: 300 }}
+                      className="rounded-md bg-muted p-4 space-y-2"
                     >
-                      <p className="text-xs text-muted-foreground mb-2">{example.exampleDescription}</p>
-                      <pre className="text-xs overflow-auto p-2 bg-black text-white rounded-md">
-                        <code>{example.exampleCode}</code>
-                      </pre>
-                    </motion.div>
+                      <p className="text-xs text-muted-foreground">{example.exampleDescription}</p>
+
+                      {example.exampleCode && (
+                        <SyntaxHighlighter
+                          language="javascript"  // <-- replace with dynamic language if you add that to schema later
+                          style={oneDark}
+                          customStyle={{
+                            borderRadius: "0.5rem",
+                            fontSize: "0.75rem",
+                            padding: "1rem",
+                          }}
+                        >
+                          {example.exampleCode}
+                        </SyntaxHighlighter>
+                      )}
+                    </div>
                   ))}
+
                 </div>
               )}
 

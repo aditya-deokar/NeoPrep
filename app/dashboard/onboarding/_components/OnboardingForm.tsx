@@ -93,7 +93,7 @@ const OnboardingForm: React.FC<OnboardingFormProps> = ({ industries }) => {
     const watchIndustry = watch("industry");
 
     return (
-        <div className="flex items-center justify-center bg-background">
+        <div className="flex items-center justify-center">
             <Card className="w-full max-w-lg mt-10 mx-2">
                 <CardHeader className="">
                     <CardTitle className="gradient-title text-4xl">
