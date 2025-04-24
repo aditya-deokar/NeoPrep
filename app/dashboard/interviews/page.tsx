@@ -21,7 +21,7 @@ async function Home() {
   const hasUpcomingInterviews = allInterview?.length! > 0;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 ">
 
 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
               <div>
@@ -46,7 +46,7 @@ async function Home() {
                 Filter
               </Button>
             </div>
-      <section className="card-cta bg-secondary">
+      <section className="card-cta ">
         <div className="flex flex-col gap-6 max-w-lg">
           <h2>Get Interview-Ready with AI-Powered Practice & Feedback</h2>
           <p className="text-lg">
