@@ -26,7 +26,6 @@ const chapterSchema = z.object({
                   z.object({
                       textContent: z.string().optional().describe("Explain the Topic in simple words in detailed"),
                       codeSnippet: z.string().optional(),
-                      language: z.string().optional(),
                       imageUrl: z.string().url().optional(),
                   }).optional(),
               ]).optional()

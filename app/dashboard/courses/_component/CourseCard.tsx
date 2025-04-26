@@ -42,7 +42,7 @@ const CourseCard: React.FC<CourseCardProps> = ({ course, refreshData, displayUse
                 // badgeColor
               )}
             >
-              <p className="">{course?.category}</p>
+              <p className="text-sm">{course?.category}</p>
             </div>
 
             {/* Cover Image */}
