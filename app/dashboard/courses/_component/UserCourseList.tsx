@@ -12,7 +12,7 @@ const UserCourseList: React.FC<{ initialCourses: CourseListType[] }> = ({ initia
 
   return (
     <div className='mt-10'>
-      <h2 className='font-medium text-xl'>My AI Courses</h2>
+      <h2 className='font-medium text-xl mb-4'>My AI Courses</h2>
 
     <div>
     {initialCourses.length == 0 &&  <div className='opacity-50'>No Courses Available! ,Please Generate Your First Course</div>

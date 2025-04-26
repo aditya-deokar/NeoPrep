@@ -1,7 +1,8 @@
 import { ReactNode, Suspense } from "react";
 import { BarLoader } from "react-spinners";
-import CourseHeader from "./_component/CourseHeader";
 import { Metadata } from "next";
+
+import InterviewHeader from "./_component/InterviewHeader";
 
 
 interface LayoutProps {
@@ -18,7 +19,7 @@ const CourseLayout: React.FC<LayoutProps> = ({ children }) => {
 
 
         <div className="space-y-6">
-            <CourseHeader/>
+            <InterviewHeader/>
 
             <Suspense fallback={<BarLoader className="mt-4" width={"100%"} color="gray" />}>
                 {children}
