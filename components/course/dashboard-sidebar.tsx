@@ -12,7 +12,7 @@ import {
     SidebarMenuItem,
     SidebarRail,
 } from "@/components/ui/sidebar";
-import { BookOpen, GraduationCap, Home, Settings, Trophy } from "lucide-react";
+import { AsteriskSquare, BookOpen, GraduationCap, Home, Settings, Trophy } from "lucide-react";
 import Link from "next/link";
 import { useParams, usePathname, useRouter } from "next/navigation";
 import { CourseProgress } from "./course-progress";
@@ -91,14 +91,14 @@ export function DashboardSidebar() {
                                     </Link>
                                 </SidebarMenuButton>
                             </SidebarMenuItem>
-                            {/* <SidebarMenuItem>
-                                <SidebarMenuButton asChild isActive={pathname === "/course/settings"}>
-                                    <Link href="/course/settings">
-                                        <Settings className="h-4 w-4" />
-                                        <span>Settings</span>
+                            <SidebarMenuItem>
+                                <SidebarMenuButton asChild isActive={pathname === `/course/dashboard/${course?.courseId}/quiz`}>
+                                    <Link href={`/course/dashboard/${course?.courseId}/quiz`}>
+                                        <AsteriskSquare className="h-4 w-4" />
+                                        <span>Assessment</span>
                                     </Link>
                                 </SidebarMenuButton>
-                            </SidebarMenuItem> */}
+                            </SidebarMenuItem>
                         </SidebarMenu>
                     </SidebarGroupContent>
                 </SidebarGroup>
