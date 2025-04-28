@@ -34,7 +34,7 @@ const CourseHeader = () => {
                 </Button>
             </div>
 
-              <section className="card-cta ">
+              <section className="card-cta border border-foreground/50 ">
                     <div className="flex flex-col gap-6 max-w-lg">
                       <h2>"Instant Course Generation, Tailored to You"</h2>
                       <p className="text-lg">
