@@ -76,13 +76,13 @@ export default function ActiveQuiz() {
   // Redirect to results if quiz is completed
   useEffect(() => {
     if (quizCompleted) {
-      router.push("/quiz/results")
+      router.push(`/course/dashboard/${courseId}/quiz/results`)
     }
-  }, [quizCompleted, router])
+  }, [quizCompleted])
 
   const handleSubmitQuiz = () => {
     completeQuiz()
-    router.push(`/course/dashboard/${courseId}/quiz/result`)
+    router.push(`/course/dashboard/${courseId}/quiz/results`)
   }
 
   const isQuestionFlagged = flaggedQuestions.includes(currentQuestion.id)

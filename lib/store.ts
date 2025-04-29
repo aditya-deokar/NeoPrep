@@ -378,7 +378,7 @@ interface QuizState {
   updateTimeRemaining: (time: number) => void
   completeQuiz: () => void
   resetQuiz: () => void
-
+  setQuestions: (questions:Question[])=> void,
   // Computed values
   getScore: () => { correct: number; total: number; percentage: number }
   getQuestionStatus: () => { answered: number; total: number }
@@ -394,9 +394,17 @@ export const useQuizStore = create<QuizState>()(
       timeRemaining: 30 * 60, // 30 minutes in seconds
       quizStarted: false,
       quizCompleted: false,
-      questions: quizData,
+      questions: [],
+
+      
 
       // Actions
+
+      setQuestions: (questions:Question[]) =>
+        set({
+          questions,
+      }),
+
       startQuiz: () =>
         set({
           quizStarted: true,
@@ -473,10 +481,16 @@ export const useQuizStore = create<QuizState>()(
           total: state.questions.length,
         }
       },
+
+    
+
     }),
+
+
     {
       name: "quiz-storage",
       partialize: (state) => ({
+        // persist what you need
         answers: state.answers,
         flaggedQuestions: state.flaggedQuestions,
         currentQuestionIndex: state.currentQuestionIndex,
@@ -485,5 +499,8 @@ export const useQuizStore = create<QuizState>()(
         quizCompleted: state.quizCompleted,
       }),
     },
+
+
+
   ),
 )
