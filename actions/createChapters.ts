@@ -20,11 +20,13 @@ export const GenerateChapterContentLayout = async (
     
 
     const { object } = await generateObject({
-      model: google("gemini-2.0-flash-001", {
+      model: google("gemini-2.5-pro-exp-03-25", {
         structuredOutputs: false,
+        useSearchGrounding:true
       }),
       schema: chapterSchema,
-      prompt: `Explain the concept in detail on Topic: ${courseName}, specific in Chapter: ${chapter.ChapterName}, cover all the chapter points like ${chapter.About} and add more. Ensure content is properly formatted, Format the response in a structured JSON format similar to the following example:
+      system:`You are an expert educational content writer. Your task is to explain educational topics in a clear, beginner-friendly, and logically structured manner.`,
+      prompt: `Explain the concept in detail on the topic: ${courseName}, specifically in Chapter: ${chapter.ChapterName}. Cover all the important chapter points such as ${chapter.About} and add any relevant additional information to enhance understanding. Make sure the explanation is beginner-friendly, logically structured, and properly formatted. Return the response in the following structured JSON format:
       {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://example.com/chapter.schema.json",
