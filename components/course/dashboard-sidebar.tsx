@@ -60,7 +60,7 @@ export function DashboardSidebar() {
   }, [params, user])
 
     return (
-        <Sidebar variant="inset">
+        <Sidebar variant="floating">
             <SidebarHeader className="p-4">
                 <div className="flex items-center gap-2">
                     <GraduationCap className="h-6 w-6" />

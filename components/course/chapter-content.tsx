@@ -11,7 +11,7 @@ import { useStore } from "@/lib/store"
 import { Chapter } from "@/types/zodChapterSchema"
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter"
 import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism"
-
+import ReactMarkdown from 'react-markdown';
 
 interface ChapterContentProps {
   chapter: Chapter
@@ -73,14 +73,18 @@ export function ChapterContent({ chapter }: ChapterContentProps) {
                   if (typeof item === "string") {
                     return (
                       <p key={contentIndex} className="text-sm">
-                        {item}
+                        <ReactMarkdown>{item}</ReactMarkdown>
                       </p>
+
+                     
                     )
                   } else if (item && typeof item === "object") {
                     return (
                       <div key={contentIndex} className="space-y-2">
                         {item.textContent && (
-                          <p className="text-sm">{item.textContent}</p>
+                          // <p className="text-sm">
+                            <ReactMarkdown>{item.textContent}</ReactMarkdown>
+                          // </p>
                         )}
                         {item.codeSnippet && (
                           <SyntaxHighlighter
