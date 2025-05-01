@@ -38,7 +38,7 @@ const CourseCard: React.FC<CourseCardProps> = ({ course, refreshData, displayUse
             {/* Type Badge */}
             <div
               className={cn(
-                "absolute top-0 right-0 w-fit px-4 py-2 rounded-bl-lg bg-background/60",
+                "absolute top-0 right-0 w-fit px-4 py-2 border-l border-b rounded-bl-lg bg-background/60",
                 // badgeColor
               )}
             >
@@ -52,13 +52,13 @@ const CourseCard: React.FC<CourseCardProps> = ({ course, refreshData, displayUse
                 width={300}
                 height={200}
                 alt="banner"
-                className="h-[200px] w-full object-contain rounded-xl"
+                className="h-[200px] w-full object-contain rounded-xl bg-gradient-to-bl "
               />
             )}
 
 
 
-            <div className="flex items-center justify-between py-1">
+            <div className="flex items-center justify-between py-3">
 
               <Badge variant="secondary">
                 <BookOpen />

@@ -18,7 +18,7 @@ const UserCourseList: React.FC<{ initialCourses: CourseListType[] }> = ({ initia
     {initialCourses.length == 0 &&  <div className='opacity-50'>No Courses Available! ,Please Generate Your First Course</div>
     }
     </div>
-      <div className='grid grid-cols-2 md:grid-cols-3 gap-5'>
+      <div className='interviews-section'>
         {initialCourses.length > 0 && (
           initialCourses.map((course, index) => (
             <CourseCard key={index} course={course} refreshData={() => {}} />

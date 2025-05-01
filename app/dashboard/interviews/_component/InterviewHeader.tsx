@@ -32,26 +32,7 @@ const InterviewHeader = () => {
                 Filter
               </Button>
             </div>
-      <section className="card-cta ">
-        <div className="flex flex-col gap-6 max-w-xl">
-          <h2>"Ace Your Interviews with AI-Powered Mock Sessions & Smart Feedback"</h2>
-          <p className="text-lg">
-          Tackle real interview questions and receive instant, actionable insights to improve.
-          </p>
-
-          <Button asChild variant={"outline"} className=" max-sm:w-full">
-            <Link href="/dashboard/interviews/interview">Start an Interview</Link>
-          </Button>
-        </div>
-
-        <Image
-          src="/robot.png"
-          alt="robo-dude"
-          width={400}
-          height={400}
-          className="max-sm:hidden"
-        />
-      </section>
+      
     
     </>
   )

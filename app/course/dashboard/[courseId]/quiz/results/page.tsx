@@ -93,7 +93,7 @@ export default function QuizResults() {
               </div>
             </CardContent>
             <CardFooter className="flex justify-between">
-              <Button variant="outline" onClick={() => router.push("/")}>
+              <Button variant="outline" onClick={() => router.push("/dashboard/courses")}>
                 Back to Dashboard
               </Button>
               <Button onClick={handleRetakeQuiz}>Retake Quiz</Button>
@@ -150,11 +150,11 @@ export default function QuizResults() {
                           let optionClass = "border p-3 rounded-md"
 
                           if (isUserAnswer && isCorrectAnswer) {
-                            optionClass += " bg-green-50 border-green-200"
+                            optionClass += " bg-green-50/50 text-green-900 border-green-200"
                           } else if (isUserAnswer && !isCorrectAnswer) {
-                            optionClass += " bg-red-50 border-red-200"
+                            optionClass += " bg-red-50/50 text-red-900 border-red-200"
                           } else if (isCorrectAnswer) {
-                            optionClass += " bg-green-50 border-green-200"
+                            optionClass += " bg-green-50/50 text-green-900 border-green-200"
                           }
 
                           return (
@@ -223,7 +223,7 @@ export default function QuizResults() {
 
                           let optionClass = "border p-3 rounded-md"
                           if (isCorrectAnswer) {
-                            optionClass += " bg-green-50 border-green-200"
+                            optionClass += " bg-green-50/50 text-green-900 border-green-200"
                           }
 
                           return (
@@ -291,9 +291,9 @@ export default function QuizResults() {
                             let optionClass = "border p-3 rounded-md"
 
                             if (isUserAnswer) {
-                              optionClass += " bg-red-50 border-red-200"
+                              optionClass += " bg-red-50/50 text-red-900 border-red-200"
                             } else if (isCorrectAnswer) {
-                              optionClass += " bg-green-50 border-green-200"
+                              optionClass += " bg-green-50/50 text-green-900 border-green-200"
                             }
 
                             return (
