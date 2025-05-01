@@ -386,6 +386,11 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
+.blur{
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
 /* Gradient text */
 .gradient-text {
   background-clip: text;
@@ -539,7 +544,7 @@ body {
   }
 
   .card-interview {
-    @apply dark:dark-gradient rounded-bl-xl rounded-tr-xl min-h-full flex flex-col p-6 relative overflow-hidden gap-10 justify-between;
+    @apply dark:dark-gradient light-gradient rounded-bl-xl rounded-tr-xl min-h-full flex flex-col p-6 relative overflow-hidden gap-10 justify-between;
 
     .badge-text {
       @apply text-sm font-semibold capitalize;
@@ -548,7 +553,10 @@ body {
 }
 
 @utility dark-gradient {
-  @apply bg-gradient-to-b from-[#1A1C20] to-[#08090D];
+  @apply bg-gradient-to-b from-[#1A1C20] to-primary/5  ;
+}
+@utility light-gradient {
+  @apply bg-gradient-to-tl from-primary/10 to-primary-foreground/10  ;
 }
 
 @utility border-gradient {

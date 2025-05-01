@@ -2,6 +2,9 @@
 import InterviewCard from "@/components/InterviewCard";
 import { currentUser } from "@clerk/nextjs/server";
 import { getInterviewsByUserId, getLatestInterviews } from "@/interview/lib/actions/general.action";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import Image from "next/image";
 
 
 
@@ -18,6 +21,27 @@ async function Home() {
 
   return (
     <div className="space-y-6 ">
+
+<section className="card-cta dark:dark-gradient light-gradient">
+        <div className="flex flex-col gap-6 max-w-xl">
+          <h2>"Ace Your Interviews with AI-Powered Mock Sessions & Smart Feedback"</h2>
+          <p className="text-lg">
+          Tackle real interview questions and receive instant, actionable insights to improve.
+          </p>
+
+          <Button asChild variant={"outline"} className=" max-sm:w-full">
+            <Link href="/dashboard/interviews/interview">Start an Interview</Link>
+          </Button>
+        </div>
+
+        <Image
+          src="/robot.png"
+          alt="robo-dude"
+          width={400}
+          height={400}
+          className="max-sm:hidden"
+        />
+      </section>
 
          
 

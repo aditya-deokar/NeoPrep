@@ -74,11 +74,11 @@ export default function ActiveQuiz() {
   }, [timeRemaining])
 
   // Redirect to results if quiz is completed
-  useEffect(() => {
-    if (quizCompleted) {
-      router.push(`/course/dashboard/${courseId}/quiz/results`)
-    }
-  }, [quizCompleted])
+  // useEffect(() => {
+  //   if (quizCompleted) {
+  //     router.push(`/course/dashboard/${courseId}/quiz/results`)
+  //   }
+  // }, [quizCompleted])
 
   const handleSubmitQuiz = () => {
     completeQuiz()

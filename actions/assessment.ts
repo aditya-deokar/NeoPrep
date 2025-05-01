@@ -3,29 +3,17 @@
 
 import { z } from "zod"
 import { GoogleGenerativeAI } from "@google/generative-ai"
-import { auth } from "@clerk/nextjs/server" // Use Clerk server auth
-import prisma from "@/lib/prisma";
+import { auth } from "@clerk/nextjs/server" 
 import { google } from "@ai-sdk/google";
 
 import { generateObject } from "ai";
-import { revalidatePath } from "next/cache";
 import { AssessmentSchema, QuestionSchema } from "@/types/zodAssesmentSchema" 
 import { Chapter } from "@/types/courseOutput";
 
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || "");
-const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
-
-
-
 
 type Question = z.infer<typeof QuestionSchema>
-
-interface CourseChaptersProps {
-  courseName?:string,
-  chapters?:Chapter[]
-}
-
 
 export const GenerateAssesment = async (
  chapters:Chapter[] ,
