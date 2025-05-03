@@ -13,7 +13,7 @@ type EducationSectionProps = {
 export default function EducationSection({ data }: EducationSectionProps) {
   return (
     <div className="space-y-6">
-      <Card>
+      <Card className="bg-transparent dark:dark-gradient light-gradient">
         <CardHeader>
           <CardTitle>Educational Pathways</CardTitle>
           <CardDescription>Academic and certification routes into ${data.industryName}</CardDescription>
@@ -42,7 +42,7 @@ export default function EducationSection({ data }: EducationSectionProps) {
                 </p>
                 <div className="grid gap-4 md:grid-cols-2">
                   {data.educationalPathways.degrees.map((degree, index) => (
-                    <Card key={index} className="overflow-hidden">
+                    <Card key={index} className="overflow-hidden card-interview">
                       <div className="bg-primary/10 p-4">
                         <h3 className="font-medium">{degree}</h3>
                       </div>
@@ -68,7 +68,7 @@ export default function EducationSection({ data }: EducationSectionProps) {
                 </p>
                 <div className="grid gap-4 md:grid-cols-2">
                   {data.educationalPathways.certifications.map((cert, index) => (
-                    <Card key={index} className="overflow-hidden">
+                    <Card key={index} className="overflow-hidden card-interview">
                       <div className="bg-primary/10 p-4">
                         <h3 className="font-medium">
                           {cert}
@@ -100,7 +100,7 @@ export default function EducationSection({ data }: EducationSectionProps) {
                 </p>
                 <div className="grid gap-4 md:grid-cols-3">
                   {data.educationalPathways.alternativeRoutes.map((route, index) => (
-                    <Card key={index} className="overflow-hidden">
+                    <Card key={index} className="overflow-hidden card-interview">
                       <div className="bg-primary/10 p-4">
                         <h3 className="font-medium">
                           {route.split(" ")[0]} {route.split(" ")[1] || ""}
@@ -127,7 +127,7 @@ export default function EducationSection({ data }: EducationSectionProps) {
         </CardContent>
       </Card>
 
-      <Card>
+      <Card className="card-interview">
         <CardHeader>
           <CardTitle>Internship Opportunities</CardTitle>
           <CardDescription>Getting practical experience in {data.industryName}</CardDescription>
