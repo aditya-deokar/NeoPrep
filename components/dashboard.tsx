@@ -74,7 +74,7 @@ export default function Dashboard({ data }: DashboardProps) {
             
                  <Tabs value={activeSection} onValueChange={setActiveSection} defaultValue="overview" className="w-full">
                     {/* Tab Triggers */}
-                    <TabsList className="grid w-full h-fit  grid-cols-1 sm:grid-cols-2 md:grid-cols-5 mb-4  dark:dark-gradient light-gradient">
+                    <TabsList className="grid w-full max-sm:h-fit  grid-cols-1 sm:grid-cols-2 md:grid-cols-5 mb-4  dark:dark-gradient light-gradient">
                         {sections.map((section) => {
                         const Icon = section.icon
                         return (

@@ -69,7 +69,7 @@ export default function Home() {
       <h1 className="text-3xl font-bold mb-6">Quiz Dashboard</h1>
 
       <div className="grid gap-6">
-        <Card>
+        <Card className="dark:dark-gradient light-gradient">
           <CardHeader>
             <CardTitle>Python Fundamentals Assessment</CardTitle>
             <CardDescription>Test your knowledge of Python basics, data structures, and control flow</CardDescription>
