@@ -75,8 +75,8 @@ export default function ChapterPage() {
       </div>
       <Separator className="my-4" />
 
-      <Tabs defaultValue="content" className="w-full">
-        <TabsList className="grid w-full grid-cols-6">
+      <Tabs defaultValue="content" className="w-full ">
+        <TabsList className="grid w-full grid-cols-6 dark:dark-gradient light-gradient bg-transparent">
           <TabsTrigger value="content">Content</TabsTrigger>
           <TabsTrigger value="video">Video</TabsTrigger>
           <TabsTrigger value="exercises">Exercises</TabsTrigger>

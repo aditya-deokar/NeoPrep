@@ -60,7 +60,7 @@ const CourseCard: React.FC<CourseCardProps> = ({ course, refreshData, displayUse
 
             <div className="flex items-center justify-between py-3">
 
-              <Badge variant="secondary">
+              <Badge variant="secondary" className="dark:dark-gradient light-gradient">
                 <BookOpen />
                 {course?.courseOutput?.noOfChapters || 0} Chapters
               </Badge>
@@ -99,7 +99,7 @@ const CourseCard: React.FC<CourseCardProps> = ({ course, refreshData, displayUse
           </div>
 
 
-          <Link href={`/course/dashboard/${course?.courseId}`} className="w-full">
+          <Link href={`/course/dashboard/${course?.courseId}`} className="w-full ">
             <Button variant="default" className="w-full">
               <BookOpenText className="mr-2 h-4 w-4" />
               View Course

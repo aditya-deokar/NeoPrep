@@ -41,7 +41,7 @@ export function ChapterContent({ chapter }: ChapterContentProps) {
 
   return (
     <motion.div initial="hidden" animate="visible" variants={containerVariants}>
-      <Card>
+      <Card className="">
         <CardHeader>
           <CardTitle>{chapter.title}</CardTitle>
         </CardHeader>
