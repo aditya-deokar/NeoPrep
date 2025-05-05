@@ -66,13 +66,13 @@ export default function Home() {
 
   return (
     <div className="w-full">
-      <h1 className="text-3xl font-bold mb-6">Quiz Dashboard</h1>
+      <h1 className="text-3xl font-bold mb-6">Assessment Dashboard</h1>
 
       <div className="grid gap-6">
         <Card className="dark:dark-gradient light-gradient">
           <CardHeader>
-            <CardTitle>Python Fundamentals Assessment</CardTitle>
-            <CardDescription>Test your knowledge of Python basics, data structures, and control flow</CardDescription>
+            <CardTitle>{course?.courseOutput.courseName}</CardTitle>
+            <CardDescription>{course?.courseOutput.description}</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="flex flex-col gap-2">
@@ -88,20 +88,22 @@ export default function Home() {
           </CardContent>
           <CardFooter>
             <Button className="w-full" onClick={startQuizWithAssessment}>
-              Start Quiz
+              Start Assessment
             </Button>
           </CardFooter>
         </Card>
 
         {/* Previous Attempts Card */}
-        <Card>
+
+        
+        {/* <Card>
           <CardHeader>
             <CardTitle>Previous Attempts</CardTitle>
             <CardDescription>View your past quiz results</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
-              {/* Example attempt 1 */}
+             
               <div className="flex justify-between items-center border-b pb-2">
                 <div>
                   <p className="font-medium">Python Fundamentals</p>
@@ -112,7 +114,7 @@ export default function Home() {
                   <p className="text-sm text-muted-foreground">80%</p>
                 </div>
               </div>
-              {/* Example attempt 2 */}
+            
               <div className="flex justify-between items-center border-b pb-2">
                 <div>
                   <p className="font-medium">Python Fundamentals</p>
@@ -132,7 +134,9 @@ export default function Home() {
               </Button>
             </Link>
           </CardFooter>
-        </Card>
+        </Card> */}
+
+
       </div>
     </div>
   )

@@ -86,7 +86,7 @@ export default function TrendsSection({ data }: TrendsSectionProps) {
           <p>{data.marketGrowthProjections.description}</p>
           <div className="mt-4 text-sm text-muted-foreground">
             <p>
-              The Indian cloud computing market is projected to grow at a CAGR of {data.growthRate}% through 2027,
+              The Indian {data?.industryName} market is projected to grow at a CAGR of {data.growthRate}% through 2027,
               creating substantial job opportunities across various specializations.
             </p>
            

@@ -16,7 +16,7 @@ export default function EducationSection({ data }: EducationSectionProps) {
       <Card className="bg-transparent dark:dark-gradient light-gradient">
         <CardHeader>
           <CardTitle>Educational Pathways</CardTitle>
-          <CardDescription>Academic and certification routes into ${data.industryName}</CardDescription>
+          <CardDescription>Academic and certification routes into {data.industryName}</CardDescription>
         </CardHeader>
         <CardContent>
           <Tabs defaultValue="degrees" className="space-y-4">
@@ -49,7 +49,7 @@ export default function EducationSection({ data }: EducationSectionProps) {
                       <CardContent className="p-4">
                         <p className="text-sm text-muted-foreground">
                           {index === 0 &&
-                            "Computer Science and related engineering degrees provide the strongest foundation for cloud computing careers."}
+                            "Computer Science and related engineering degrees provide the strongest foundation."}
                           {index === 1 &&
                             "Master of Computer Applications offers a path for non-CS graduates to enter the field."}
                           {index === 2 &&

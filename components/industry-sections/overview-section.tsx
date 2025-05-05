@@ -73,7 +73,7 @@ export default function OverviewSection({ data }: OverviewSectionProps) {
         <Card className="shadow-lg hover:shadow-xl transition-shadow duration-300">
           <CardHeader>
             <CardTitle className="text-lg font-bold text-primary">Top Skills</CardTitle>
-            <CardDescription className="text-muted-foreground">Most in-demand skills for cloud computing</CardDescription>
+            <CardDescription className="text-muted-foreground">Most in-demand skills for {data?.industryName}</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="flex flex-wrap gap-3">
@@ -88,7 +88,7 @@ export default function OverviewSection({ data }: OverviewSectionProps) {
         <Card className="shadow-lg hover:shadow-xl transition-shadow duration-300">
           <CardHeader>
             <CardTitle className="text-lg font-bold text-primary">Key Companies Hiring</CardTitle>
-            <CardDescription className="text-muted-foreground">Major employers in the cloud computing industry</CardDescription>
+            <CardDescription className="text-muted-foreground">Major employers in the {data?.industryName} industry</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="flex flex-wrap gap-3">

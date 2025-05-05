@@ -39,7 +39,7 @@ export default function SkillsSection({ data }: SkillsSectionProps) {
         <Card className="bg-transparent dark:dark-gradient light-gradient">
           <CardHeader>
             <CardTitle>Skills Analysis</CardTitle>
-            <CardDescription>Current and recommended skills for cloud computing professionals</CardDescription>
+            <CardDescription>Current and recommended skills for {data?.industryName} professionals</CardDescription>
           </CardHeader>
           <CardContent>
             <Tabs defaultValue="current" className="space-y-4">
@@ -106,7 +106,7 @@ export default function SkillsSection({ data }: SkillsSectionProps) {
         <Card className="bg-transparent dark:dark-gradient light-gradient">
           <CardHeader>
             <CardTitle>Career Progression</CardTitle>
-            <CardDescription>Common career paths in cloud computing</CardDescription>
+            <CardDescription>Common career paths in {data?.industryName}</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             {data.careerProgressionExamples.map((progression, index) => (
@@ -145,7 +145,7 @@ export default function SkillsSection({ data }: SkillsSectionProps) {
                 <p className="font-medium">{data.entryLevelOutlook.prospects}</p>
               </div>
               <p className="text-sm text-muted-foreground">
-                Entry-level cloud computing roles are abundant with strong growth projected over the next 5 years.
+                Entry-level {data?.industryName} roles are abundant with strong growth projected over the next 5 years.
               </p>
             </div>
             <div className="space-y-2">

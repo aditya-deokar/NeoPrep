@@ -27,7 +27,7 @@ export default function QuizInstructions() {
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
           <Card className="border-2">
             <CardHeader className="pb-4">
-              <CardTitle className="text-2xl">Python Fundamentals Assessment</CardTitle>
+              <CardTitle className="text-2xl">Assessment</CardTitle>
               <CardDescription>Please review the instructions before starting</CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">

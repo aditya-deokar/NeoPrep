@@ -58,7 +58,7 @@ export default function SalarySection({ data }: SalarySectionProps) {
       <Card className="bg-transparent dark:dark-gradient light-gradient">
         <CardHeader>
           <CardTitle>Salary Insights</CardTitle>
-          <CardDescription>Salary ranges for different roles in cloud computing (INR per annum)</CardDescription>
+          <CardDescription>Salary ranges for different roles in {data?.industryName} (INR per annum)</CardDescription>
         </CardHeader>
         <CardContent>
           <Tabs defaultValue="chart" className="space-y-4">
