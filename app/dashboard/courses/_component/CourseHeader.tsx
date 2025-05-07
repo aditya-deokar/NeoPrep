@@ -42,7 +42,7 @@ const CourseHeader = () => {
                       </p>
             
                       <Button asChild variant={"outline"} className=" max-sm:w-full">
-                        <Link href="/dashboard/interviews/interview">Create Course</Link>
+                        <Link href="/course/create-course">Create Course</Link>
                       </Button>
                     </div>
             
