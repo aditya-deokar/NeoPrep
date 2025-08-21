@@ -20,7 +20,7 @@ export const GenerateChapterContentLayout = async (
     
 
     const { object } = await generateObject({
-      model: google("gemini-2.5-pro-exp-03-25", {
+      model: google("gemini-2.5-pro", {
         structuredOutputs: false,
         useSearchGrounding:true
       }),
