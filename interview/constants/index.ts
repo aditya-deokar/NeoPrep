@@ -170,7 +170,7 @@ export const aiTeacher: CreateAssistantDTO = {
   voice: {
     // A friendly and clear voice is good for a teacher.
     provider: "11labs",
-    voiceId: "Mimi", // Changed to a different voice, e.g., 'Mimi'
+    voiceId: "y6Ao4Y93UrnTbmzdVlFc", // Changed to a different voice, e.g., 'Mimi'
     stability: 0.5,
     similarityBoost: 0.75,
   },
@@ -204,6 +204,35 @@ export const aiTeacher: CreateAssistantDTO = {
     ],
   },
 };
+
+
+// export const getAITeacherAssistant = (): CreateAssistantDTO => ({
+//   name: "AITeacher",
+//   // This first message will be overridden by the client before starting the call.
+//   firstMessage: "Hello! I'm your AI Teacher. Let's begin our lesson.",
+//   transcriber: {
+//     provider: "deepgram",
+//     model: "nova-2",
+//     language: "en",
+//   },
+//   voice: {
+//     provider: "11labs",
+//     // Using a known stable voice ID like 'Mimi'. Invalid IDs can cause setup failures.
+//     voiceId: "y6Ao4Y93UrnTbmzdVlFc", 
+//   },
+//   model: {
+//     provider: "openai",
+//     model: "gpt-4-turbo",
+//     // This message array will be completely replaced by the client with dynamic,
+//     // context-rich content before the call starts.
+//     messages: [
+//       {
+//         role: "system",
+//         content: "You are a helpful AI assistant.", // Basic placeholder
+//       },
+//     ],
+//   },
+// });
 
 export const feedbackSchema = z.object({
   totalScore: z.number(),

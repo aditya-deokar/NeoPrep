@@ -11,6 +11,7 @@ import { cn } from "@/lib/utils";
 import { vapi } from "@/interview/lib/vapi.sdk";
 import { aiTeacher } from "@/interview/constants";
 
+
 // Define more relevant props for a teaching context
 interface AITeacherProps {
   studentName: string;
